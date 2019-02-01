@@ -1,24 +1,67 @@
-# README
+# todo_management_app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a task management application.
 
-Things you may want to cover:
 
-* Ruby version
+## database design
 
-* System dependencies
+## tasks table
 
-* Configuration
+|Column      |Type       |Option                         |
+|------------|-----------|-------------------------------|
+|title       |string     |null: false                    |
+|description |text       |null: false                    |
+|user_id     |integer    |null: false, foreign_key: true |
 
-* Database creation
+### Association
+- belongs_to :user
+- has_many :task_tags
 
-* Database initialization
 
-* How to run the test suite
+## tags table
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column      |Type       |Option                      |
+|------------|-----------|----------------------------|
+|tag_name    |string     |null: false                 |
 
-* Deployment instructions
 
-* ...
+### Association
+- has_many :task_tags
+
+
+## task_tags table
+
+|Column      |Type       |Option                         |
+|------------|-----------|-------------------------------|
+|task_id     |integer    |null: false, foreign_key: true |
+|tag_id      |integer    |null: false, foreign_key: true |
+
+### Association
+- belongs_to :task
+- belongs_to :tag
+
+
+## users table
+
+|Column      |Type       |Option                               |
+|------------|-----------|-------------------------------------|
+|name        |string     |null: false                          |
+|email       |string     |null: false, add_index, unique: true |
+|group_id    |integer    |                                     |
+
+### Association
+- has_many :tasks
+- belongs_to :group
+
+
+## groups table
+
+|Column      |Type       |Option                               |
+|------------|-----------|-------------------------------------|
+|group_name  |string     |null: false, unique: true            |
+
+### Association
+- has_many :users
+- has_many :tasks
+
+
