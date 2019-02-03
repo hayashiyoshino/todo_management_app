@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  berore_action :set_task, only: [:create, :edit, :update, :show]
 
   def index
     @tasks = Task.all
@@ -8,6 +9,7 @@ class TasksController < ApplicationController
   end
 
   def create
+
   end
 
   def edit
@@ -20,6 +22,12 @@ class TasksController < ApplicationController
   end
 
   def show
+  end
+
+  private
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 
 
