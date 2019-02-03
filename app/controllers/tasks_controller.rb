@@ -10,9 +10,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new
-    Task.create(task_params)
-    redirect_to tasks_path, notice: 'TODOを新規作成しました！'
+    @task = Task.new(task_params)
+    if @task.save
+      redirect_to tasks_path
+      flash[:notice] = 'TODOを新規作成しました！'
+    else
+      render action: :new
+    end
   end
 
   def edit
