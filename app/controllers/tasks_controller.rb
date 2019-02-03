@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  berore_action :set_task, only: [:edit, :update, :show]
+  before_action :set_task, only: [:edit, :update, :show]
 
   def index
     @tasks = Task.all
@@ -9,6 +9,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    @task = Task.new
     Task.create(task_params)
   end
 
