@@ -1,1 +1,10 @@
+div
+  | TODO新規作成
 
+= form_with model: @task, url: tasks_path do |f|
+  div
+    = f.text_field :title
+  div
+    = f.text_area :description
+  div
+      = f.submit
