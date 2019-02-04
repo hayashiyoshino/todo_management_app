@@ -1,7 +1,5 @@
 div
-  | TODOリスト
-  div
-   = link_to '新規作成', new_task_path
+  = link_to '新規作成', new_task_path
   ul
     - @tasks.each do |task|
       div
