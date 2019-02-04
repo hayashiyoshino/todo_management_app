@@ -50,6 +50,7 @@ jobs:
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
+      - run: bundle install
       - run: gem install rspec
       - run: bundle exec rspec --init
 
