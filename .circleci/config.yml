@@ -29,7 +29,6 @@ jobs:
 
     steps:
       - checkout
-      - run gem install bundler -v 1.17.2
       - run bundle install
 
       # Download and cache dependencies
