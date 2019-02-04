@@ -29,7 +29,6 @@ jobs:
 
     steps:
       - checkout
-      - run bundle install
 
       # Download and cache dependencies
       - restore_cache:
