@@ -53,6 +53,8 @@ jobs:
       - run: bundle install
       - run: gem install rspec
       - run: bundle exec rspec --init
+      - run: rails g rspec:install
+      - run: rails g rspec:model task
 
       # run tests!
       - run:
