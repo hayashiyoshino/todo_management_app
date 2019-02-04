@@ -1,0 +1,10 @@
+div
+  | TODO編集
+
+= form_with model: @task, url: task_path do |f|
+  div
+    = f.text_field :title
+  div
+    = f.text_area :description
+  div
+      = f.submit
