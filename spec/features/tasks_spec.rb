@@ -21,13 +21,5 @@ feature 'Task管理' do
     expect(page).to have_content "Description can't be blank"
   end
 
-  scenario "Taskのアップデート時にtitleが''だとエラーが表示される" do
-  end
-
-  scenario "Taskのアップデート時にdescriptionが''だとエラーが表示される" do
-  end
-
-
-
 
 end
