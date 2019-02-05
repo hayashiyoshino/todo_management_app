@@ -9,7 +9,17 @@ feature 'Task管理' do
       click_button 'Create Task'
     }.to change(Task, :count).by(0)
     expect(page).to have_content "Title can't be blank"
-    end
+  end
+
+  scenario "Taskの新規作成時にdescriptionが''だとエラーが表示される" do
+  end
+
+  scenario "Taskのアップデート時にtitleが''だとエラーが表示される" do
+  end
+
+  scenario "Taskのアップデート時にdescriptionが''だとエラーが表示される" do
+  end
+
 
 
 
