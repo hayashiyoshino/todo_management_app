@@ -8,8 +8,10 @@ div
 
 = form_with model: @task, url: tasks_path, local: true do |f|
   div
+    = f.label :title
     = f.text_field :title
   div
+    = f.label :Description
     = f.text_area :description
   div
       = f.submit
