@@ -9,7 +9,7 @@ feature 'Task管理' do
     visit tasks_path
     task = all('.task_list')
     task_0 = task[0]
-    expect(task_0).to have_content "2"
+    expect(task_0).to have_content "4"
     save_and_open_page
   end
 
