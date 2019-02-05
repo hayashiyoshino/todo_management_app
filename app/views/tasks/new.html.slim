@@ -1,7 +1,12 @@
 div
   | TODO新規作成
+  div
+    - if @task.errors.any?
+      - @task.errors.full_messages.each do |msg|
+        p
+          = msg
 
-= form_with model: @task, url: tasks_path do |f|
+= form_with model: @task, url: tasks_path, local: true do |f|
   div
     = f.text_field :title
   div

@@ -11,11 +11,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.save
+    @task.save
+    if !@task.new_record?
       redirect_to tasks_path
       flash[:notice] = 'TODOを新規作成しました！'
     else
-      render action: :new
+      render 'new'
     end
   end
 
@@ -27,7 +28,7 @@ class TasksController < ApplicationController
       redirect_to tasks_path
       flash[:notice] = 'TODOを編集しました'
     else
-      render action: :edit
+      render :edit
     end
   end
 
@@ -36,7 +37,7 @@ class TasksController < ApplicationController
       redirect_to tasks_path
       flash[:notice] = 'TODOを削除しました'
     else
-      render action: :index
+      render :index
       flash[:notice] = '削除に失敗しました'
     end
   end
