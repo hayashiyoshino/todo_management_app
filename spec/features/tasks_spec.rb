@@ -41,14 +41,5 @@ feature 'Task管理' do
     expect(page).to have_content "Descriptionを入力してください"
   end
 
-  # scenario "作成日時の降順で並び替えができていること" do
-  #   visit tasks_path
-  #   click_link '新規作成'
-  #   fill_in 'Title', with: 'hello'
-  #   fill_in 'Description', with: 'helloworld!!'
-  #   click_button '登録する'
-  #   expect.(page).first('li.todo_list').to have_content "helloworld!!"
-  # end
-
 
 end
