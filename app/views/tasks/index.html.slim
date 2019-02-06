@@ -1,13 +1,14 @@
 div.inner_yield
-  ul
-    - @tasks.each do |task|
-      div
-        li
-          = task.title
-          span.span_margin
-            | :
-          = task.description
-          span.span_margin
-          = link_to '編集', edit_task_path(task)
-          span.span_margin
-          = link_to '削除', task_path(task), method: :delete
+  div
+    ul
+      - @tasks.each do |task|
+        div
+          li
+            = task.title
+            span.span_margin
+              | :
+            = task.description
+            span.span_margin
+            = link_to '編集', edit_task_path(task)
+            span.span_margin
+            = link_to '削除', task_path(task), method: :delete
