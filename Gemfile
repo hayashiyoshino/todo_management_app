@@ -58,6 +58,11 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+
+group :production do
+  gem 'rails_12factor'
+end
+
 gem 'slim-rails'
 gem 'html2slim'
 
