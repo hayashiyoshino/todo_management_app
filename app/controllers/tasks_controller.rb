@@ -16,7 +16,7 @@ class TasksController < ApplicationController
       redirect_to tasks_path
       flash[:notice] = 'TODOを新規作成しました！'
     else
-      render 'new'
+      render :new
     end
   end
 
