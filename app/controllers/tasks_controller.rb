@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all.order("created_at DESC")
+
   end
 
   def new
@@ -43,6 +44,9 @@ class TasksController < ApplicationController
   end
 
   def show
+  end
+
+  def sort_deadline
   end
 
   private
