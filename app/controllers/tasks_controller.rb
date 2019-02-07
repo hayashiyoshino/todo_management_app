@@ -49,6 +49,10 @@ class TasksController < ApplicationController
     @tasks = Task.all.order('deadline ASC')
   end
 
+  def narrow_down_status
+    @tasks = Task.all.where(status: params[:status])
+  end
+
   private
 
   def task_params

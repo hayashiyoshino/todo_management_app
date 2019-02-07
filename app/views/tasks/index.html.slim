@@ -5,6 +5,14 @@ div.inner_yield
     = form_tag('/', method: :get) do
       input.search__query[name="keyword" placeholder="タイトルで検索" type="text" value=""]
       input.btn.light-blue.accent-2[title="検索" type="submit"]
+    div.margintop
+    = form_with model: @task, url: narrow_down_status_tasks_path, method: :get, local: true do |f|
+      div
+        = f.label '未着手 or 着手中 or 完了 で検索'
+        = f.select :status, Task.statuses.keys
+        = f.submit value: 'ステータスで検索', class: 'btn light-blue accent-2'
+
+
       ul
         - @tasks.each do |task|
           div
