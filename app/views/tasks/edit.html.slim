@@ -7,13 +7,17 @@ div
 
 = form_with model: @task, url: task_path, local: true do |f|
   div
-    = f.label :Title
+    = f.label :title
     = f.text_field :title
   div
-    = f.label :Description
+    = f.label :description
     = f.text_area :description
   div
     = f.label :deadline
     = f.date_field :deadline
+  div
+    = f.radio_button :status, 0
+    = f.label :status
+
   div
       = f.submit
