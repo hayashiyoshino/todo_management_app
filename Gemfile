@@ -60,6 +60,7 @@ group :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'faker'
 end
 
 group :development, :test do
