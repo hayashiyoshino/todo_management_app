@@ -39,3 +39,7 @@
 .margintop{
   margin-top: 10px;
 }
+
+select {
+  display: block;
+}

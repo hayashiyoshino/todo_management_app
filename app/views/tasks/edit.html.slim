@@ -16,8 +16,9 @@ div
     = f.label :deadline
     = f.date_field :deadline
   div
-    = f.radio_button :status, 0
-    = f.label :status
+    = f.label '未着手 or 着手中 or 完了 or を選択してください'
+    = f.select :status, Task.statuses.keys, selected: Task.statuses
+
 
   div
       = f.submit
