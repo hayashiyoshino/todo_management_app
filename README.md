@@ -11,6 +11,9 @@ This is a task management application.
 |------------|-----------|-------------------------------|
 |title       |string     |null: false                    |
 |description |text       |null: false                    |
+|deadline    |date       |                               |
+|status      |integer    |null: false, default: 0        |
+|priority    |integer    |null: false, default: 0        |
 |user_id     |integer    |null: false, foreign_key: true |
 
 ### Association
