@@ -40,15 +40,15 @@ RSpec.describe Task, type: :model do
       expect(Task.search('rspec')).to include(task2)
       expect(Task.search('rspec')).to_not include(task1, task3, task4)
     end
-    it "benchmark of add index to title" do
-      99999.times{FactoryGirl.create(:task)}
-      task = Task.create(title: 'hellorspec', description: 'hello')
-      Benchmark.bm 10 do |r|
-        r.report "add index" do
-          Task.search('rspec')
-        end
-      end
-    end
+    # it "benchmark of add index to title" do
+    #   99999.times{FactoryGirl.create(:task)}
+    #   task = Task.create(title: 'hellorspec', description: 'hello')
+    #   Benchmark.bm 10 do |r|
+    #     r.report "add index" do
+    #       Task.search('rspec')
+    #     end
+    #   end
+    # end
   end
 
 end
