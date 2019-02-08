@@ -14,7 +14,7 @@ div.inner_yield
         = f.submit value: 'ステータスで検索', class: 'btn light-blue accent-2'
     = form_with model: @task, url: tasks_path, method: :get, local: true do |f|
       div
-        = f.label  :sortpriority, value: '緊急度で検索'
+        = f.label :sortpriority
         = f.select :sortpriority, Task.priorities.keys
         = f.submit value: '緊急度で検索', class: 'btn light-blue accent-2'
 
