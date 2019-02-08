@@ -18,7 +18,5 @@ div
   div
     = f.label '未着手 or 着手中 or 完了を選択してください'
     = f.select :status, Task.statuses.keys, selected: Task.statuses
-
-
   div
     = f.submit
