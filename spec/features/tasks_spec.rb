@@ -62,5 +62,16 @@ feature 'Task管理' do
     expect(page).to have_content "Descriptionを入力してください"
   end
 
+  scenario "検索した文字列と一致するタイトルを返す" do
+    task1 = Task.create(id: 1, title: "hello", description: "oo")
+    task2 = Task.create(id: 2, title: "hellorspec", description: "oo")
+    task3 = Task.create(id: 3, title: "helloruby", description: "oo")
+    task4 = Task.create(id: 4, title: "helloworld", description: "oo")
+    task5 = Task.create(id: 5, title: "hellorails", description: "oo")
+    visit tasks_path
+    fill_in 'タイトルで検索', with: 'rspec'
+    click_button '検索'
+    expect(page).to have_content "hellorspec"
+  end
 
 end
