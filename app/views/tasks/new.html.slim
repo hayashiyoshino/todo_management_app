@@ -17,4 +17,7 @@ div
     = f.label :deadline
     = f.date_field :deadline
   div
+    = f.label :priority
+    = f.select :priority, Task.priorities.keys, selected: Task.priorities
+  div
       = f.submit
