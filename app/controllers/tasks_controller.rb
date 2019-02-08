@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order("created_at DESC").search(params[:keyword]).sort_priority(params[:sortpriority])
+    @tasks = Task.all.order("created_at DESC").search(params[:keyword]).sort_priority(params[:sortpriority]).page(params[:page]).per(10)
   end
 
   def new

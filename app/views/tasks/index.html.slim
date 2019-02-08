@@ -42,3 +42,5 @@ div.inner_yield
               span.span_margin
               = link_to '削除', task_path(task), method: :delete
 
+  div.light-blue.accent-2
+  = paginate @tasks, class: 'light-blue accent-2'
