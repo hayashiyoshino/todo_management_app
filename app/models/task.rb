@@ -9,4 +9,13 @@ class Task < ApplicationRecord
     where('title LIKE(?)', "%#{keyword}%")
   end
 
+  def self.sort_priority(keyword = nil)
+    val ||= ""
+    if keyword == nil
+      all
+    else
+      where(priority: keyword)
+    end
+  end
+
 end

@@ -12,6 +12,12 @@ div.inner_yield
         = f.label '未着手 or 着手中 or 完了 で検索'
         = f.select :status, Task.statuses.keys
         = f.submit value: 'ステータスで検索', class: 'btn light-blue accent-2'
+    = form_with model: @task, url: tasks_path, method: :get, local: true do |f|
+      div
+        = f.label  :sortpriority, value: '緊急度で検索'
+        = f.select :sortpriority, Task.priorities.keys
+        = f.submit value: '緊急度で検索', class: 'btn light-blue accent-2'
+
 
 
       ul
