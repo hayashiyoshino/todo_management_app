@@ -11,3 +11,6 @@ div.margintop_big.fontsize_midium
     = f.text_field :password_digest
   div
     = f.submit value: "ログイン", class: 'btn light-blue accent-2'
+
+div.margintop_big
+  = link_to "新規登録", new_user_path

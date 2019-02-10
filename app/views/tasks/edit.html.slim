@@ -22,4 +22,4 @@ div
     = f.label :priority
     = f.select :priority, Task.priorities.keys, selected: Task.priorities
   div
-    = f.submit
+    = f.submit class: 'btn light-blue accent-2 margintop_big'
