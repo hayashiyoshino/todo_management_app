@@ -17,8 +17,12 @@ html
               | TODOリスト
             ul#nav-mobile.right.hide-on-med-and-down
               li
-                a[href="tasks/new"]
+                a[href="/tasks/new"]
                   | 新規作成
+              - if current_user
+                li
+                  a[href="/logout" data-method="delete"]
+                    | ログアウト
 
       - if flash[:notice]
         p
