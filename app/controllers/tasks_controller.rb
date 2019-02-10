@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
+  before_action :require_sign_in
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.includes(:user).order("created_at DESC").search(params[:keyword]).sort_priority(params[:sortpriority]).page(params[:page]).per(10)
+    @tasks = current_user.tasks.includes(:user).order("created_at DESC").search(params[:keyword]).sort_priority(params[:sortpriority]).page(params[:page]).per(10)
   end
 
   def new
@@ -61,6 +62,10 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def require_sign_in
+    redirect_to login_path unless current_user
   end
 
 
