@@ -44,6 +44,10 @@
   margin-top: 30px;
 }
 
+.padding_midium{
+  padding: 10px;
+}
+
 select {
   display: block;
 }
@@ -58,4 +62,8 @@ nav {
 
 .fontsize_midium {
   font-size: 28px;
+}
+
+.fontsize_small{
+  font-size: 20px;
 }

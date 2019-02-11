@@ -1,8 +1,11 @@
-div
-  | ユーザー一覧
+div.fontsize_midium.margintop_big
+  | 管理画面：ユーザー一覧
 
 - @users.each do |user|
-  div
+  div.margintop_big.card.fontsize_small.padding_midium
+    | ID:
     = user.id
+    | :
     = user.name
+    | :
     = user.created_at
