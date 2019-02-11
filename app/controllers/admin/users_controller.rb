@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  beforeaction :admin_user
+  before_action :admin_user
 
   def index
     @users = User.all.order("created_at DESC")
