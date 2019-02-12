@@ -12,8 +12,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      redirect_to @user
+      redirect_to(admin_users_path)
     else
       render :new
     end
@@ -36,7 +35,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to :index
+      redirect_to(admin_users_path)
       flash[:notice] = 'ユーザーを削除しました'
     else
       render :index
