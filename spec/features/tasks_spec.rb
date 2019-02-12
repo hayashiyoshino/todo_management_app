@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 feature 'Task管理' do
+  scenario "作成日時の順番で並び替えができていること" do
+    Task.create(id: 1, title: 'hi', description: 'hi')
+    Task.create(id: 2, title: 'hi', description: 'hihi2', created_at: Time.current + 1.days)
+    Task.create(id: 3, title: 'hiii', description: 'hihi3', created_at: Time.current + 2.days)
+    Task.create(id: 4, title: 'hiiiii', description: 'hihi4', created_at: Time.current + 3.days)
+    visit tasks_path
+    task = all('.task_list')
+    expect(task[0]).to have_content "4"
+  end
 
   scenario "Taskを作成する" do
     visit tasks_path
