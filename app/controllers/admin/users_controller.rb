@@ -49,7 +49,7 @@ class Admin::UsersController < ApplicationController
 
   def user_tasks
     @user = User.find(params[:id])
-    @tasks = @user.tasks
+    @tasks = @user.tasks.page(params[:page]).per(10)
   end
 
   private
