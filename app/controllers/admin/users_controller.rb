@@ -24,9 +24,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(prams[:id])
-    if @user = User.update(user_params)
-      redirect_to :index
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to(admin_users_path)
     else
       render :edit
     end
@@ -50,7 +51,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def admin_user

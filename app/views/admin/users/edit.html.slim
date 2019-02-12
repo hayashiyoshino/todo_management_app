@@ -6,7 +6,7 @@ div.margintop_big.fontsize_midium
   - @user.errors.full_messages.each do |msg|
     = msg
 
-= form_with model: @user, url: admin_users_path, local: true do |f|
+= form_with model: @user, url: admin_user_path, local: true do |f|
   div
     = f.label :name
     = f.text_field :name
