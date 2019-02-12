@@ -7,11 +7,14 @@ div.fontsize_midium.margintop_big
   div.margintop_big.card.fontsize_small.padding_midium
     | ID:
     = user.id
-    | :
+    span.span_margin
     = user.name
-    | :
+    span.span_margin
     = user.created_at
-    | :
+    span.span_margin
+    | タスク数:
+    = user.tasks.count
+    span.span_margin
     =link_to "編集", "/admin/users/#{user.id}/edit"
-    | :
+    span.span_margin
     = link_to "削除", "/admin/users/#{user.id}", method: :delete
