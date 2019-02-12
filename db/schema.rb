@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_091519) do
+ActiveRecord::Schema.define(version: 2019_02_12_092201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "lavels", force: :cascade do |t|
     t.string "lavel_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "task_lavels", force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "lavel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

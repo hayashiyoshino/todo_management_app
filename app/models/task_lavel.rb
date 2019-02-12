@@ -1,0 +1,2 @@
+class TaskLavel < ApplicationRecord
+end
