@@ -5,7 +5,7 @@ require 'rails_helper'
 feature 'Task管理' do
 
   scenario "期限が近い順で並び替えができていること" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
+    user = User.create(id: 1, name: "hayashi", email: 'ttt@com', password: '11111111', password_confirmation: '11111111')
     taskmodel = Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days, user_id: 1)
     Task.create(id: 2, title: '期限2', description: '期限２', deadline: Time.current + 2.days, user_id: 1)
     Task.create(id: 3, title: '期限3', description: '期限３', deadline: Time.current + 6.days, user_id: 1)
