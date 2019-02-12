@@ -21,6 +21,9 @@ html
                   a[href="/tasks/new"]
                     | 新規作成
                 li
+                  a[href="/users/#{current_user.id}"]
+                    | マイページ
+                li
                   a[href="/logout" data-method="delete"]
                     | ログアウト
 
