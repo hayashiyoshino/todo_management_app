@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_user
 
   def index
-    @users = User.all.order("created_at DESC")
+    @users = User.all.order("created_at DESC").includes(:tasks)
   end
 
   def new
@@ -45,6 +45,11 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def user_tasks
+    @user = User.find(params[:id])
+    @tasks = @user.tasks
   end
 
   private

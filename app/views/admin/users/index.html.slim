@@ -13,7 +13,8 @@ div.fontsize_midium.margintop_big
     = user.created_at
     span.span_margin
     | タスク数:
-    = user.tasks.count
+    = link_to user.tasks.size, "/admin/users/#{user.id}/user_tasks"
+    = user.tasks.size
     span.span_margin
     =link_to "編集", "/admin/users/#{user.id}/edit"
     span.span_margin
