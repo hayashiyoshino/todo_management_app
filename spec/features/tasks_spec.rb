@@ -29,8 +29,7 @@ feature 'Task管理' do
     Task.create(id: 4, title: 'hiiiii', description: 'hihi4', created_at: Time.current + 3.days, deadline: Time.current + 110.days)
     visit tasks_path
     task = all('.task_list')
-    task_0 = task[0]
-    expect(task_0).to have_content "4"
+    expect(task[0]).to have_content "4"
   end
 
 

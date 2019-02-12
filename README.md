@@ -65,3 +65,26 @@ This is a task management application.
 - has_many :tasks
 
 
+## How to deploy to Heroku
+
+$ heroku login
+
+add gem rails_12factor in group :production
+
+delete gemfile.lock
+
+change 'config.asset.compile = false => true' in config/environments/production.rb
+
+$ heroku create
+
+$ heroku config
+
+$ git push heroku master
+
+$ heroku run rake db:migrate
+
+Deploy is complete!!
+
+
+
+
