@@ -4,13 +4,21 @@ require 'rails_helper'
 
 feature 'Task管理' do
 
+  scenario"ユーザー登録ができること" do
+
+  end
+
   scenario "期限が近い順で並び替えができていること" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
+    user = User.create(id: 1, name: "hayashi", email: 'ttt@gmail.com', password: '11111111', password_confirmation: '11111111')
     taskmodel = Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days, user_id: 1)
     Task.create(id: 2, title: '期限2', description: '期限２', deadline: Time.current + 2.days, user_id: 1)
     Task.create(id: 3, title: '期限3', description: '期限３', deadline: Time.current + 6.days, user_id: 1)
     Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days, user_id: 1)
     visit tasks_path
+    fill_in 'Email', with: 'ttt@gmail.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
     click_on '期限近い順で並べ替え'
     task = all('.task_list')
     task_0 = task[0]
