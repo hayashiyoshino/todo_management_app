@@ -12,8 +12,10 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    lavel_list = params[:task_list].split(",")
     @task.save
     if !@task.new_record?
+      @task.save_lavels(lavel_list)
       redirect_to tasks_path
       flash[:notice] = 'TODOを新規作成しました！'
     else
@@ -22,10 +24,13 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @lavel_list = @task.lavels.pluck(:lavel_name),join(",")
   end
 
   def update
+    lavel_list = params[:task_list].split(",")
     if @task.update(task_params)
+      @task.save_lavels(lavel_list)
       redirect_to tasks_path
       flash[:notice] = 'TODOを編集しました'
     else
