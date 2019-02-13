@@ -261,8 +261,8 @@ DEPENDENCIES
   pry
   puma (~> 3.11)
   rails (~> 5.2.2)
-  rspec-rails
   rails_12factor
+  rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
   slim-rails

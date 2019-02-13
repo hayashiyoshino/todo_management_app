@@ -5,21 +5,17 @@ require 'rails_helper'
 feature 'Task管理' do
 
   scenario "期限が近い順で並び替えができていること" do
-    taskmodel = Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days)
+    Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days)
     Task.create(id: 2, title: '期限2', description: '期限２', deadline: Time.current + 2.days)
     Task.create(id: 3, title: '期限3', description: '期限３', deadline: Time.current + 6.days)
     Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days)
     visit tasks_path
     click_on '期限近い順で並べ替え'
     task = all('.task_list')
-    task_0 = task[0]
-    task_1 = task[1]
-    task_2 = task[2]
-    task_3 = task[3]
-    expect(task_0).to have_content "2"
-    expect(task_1).to have_content "1"
-    expect(task_2).to have_content "3"
-    expect(task_3).to have_content "4"
+    expect(task[0]).to have_content "2"
+    expect(task[1]).to have_content "1"
+    expect(task[2]).to have_content "3"
+    expect(task[3]).to have_content "4"
   end
 
   scenario "作成日時の順番で並び替えができていること" do
