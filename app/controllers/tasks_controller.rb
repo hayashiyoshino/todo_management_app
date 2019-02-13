@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order("created_at DESC")
+    @tasks = Task.sort_deadline(params[:sort])
   end
 
   def new
@@ -45,13 +45,6 @@ class TasksController < ApplicationController
   def show
   end
 
-  def sort_deadline
-    @tasks = Task.all.order('deadline ASC')
-  end
-
-  def sort_deadlinedesc
-    @tasks = Task.all.order('deadline DESC')
-  end
 
   private
 
