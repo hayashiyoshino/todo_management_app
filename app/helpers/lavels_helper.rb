@@ -1,2 +1,0 @@
-module LavelsHelper
-end
