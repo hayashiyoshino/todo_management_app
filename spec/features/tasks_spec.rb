@@ -18,6 +18,20 @@ feature 'Task管理' do
     expect(task[3]).to have_content "4"
   end
 
+  scenario "期限が遠い順で並び替えができていること" do
+    Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days)
+    Task.create(id: 2, title: '期限2', description: '期限２', deadline: Time.current + 2.days)
+    Task.create(id: 3, title: '期限3', description: '期限３', deadline: Time.current + 6.days)
+    Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days)
+    visit tasks_path
+    click_on '期限遠い順で並べ替え'
+    task = all('.task_list')
+    expect(task[0]).to have_content "4"
+    expect(task[1]).to have_content "3"
+    expect(task[2]).to have_content "1"
+    expect(task[3]).to have_content "2"
+  end
+
   scenario "作成日時の順番で並び替えができていること" do
     Task.create(id: 1, title: 'hi', description: 'hi', deadline: Time.current + 15.day)
     Task.create(id: 2, title: 'hi', description: 'hihi2', created_at: Time.current + 1.days, deadline: Time.current + 12.days)
