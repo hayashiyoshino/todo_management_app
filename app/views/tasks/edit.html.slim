@@ -24,5 +24,6 @@ div
   div
     = f.label "ラベル"
     ul#task_lavels
+    = hidden_field_tag :lavel_hidden, @lavel_list
   div
     = f.submit class: 'btn light-blue accent-2 margintop_big'

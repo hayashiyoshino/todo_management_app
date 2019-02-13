@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @lavel_list = @task.lavels.pluck(:lavel_name),join(",")
+    @lavel_list = @task.lavels.pluck(:lavel_name).join(",")
   end
 
   def update
