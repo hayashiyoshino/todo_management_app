@@ -21,4 +21,19 @@ class Task < ApplicationRecord
     end
   end
 
+  def save_lavels(lavels)
+    current_lavels = self.lavels.pluck(:lavel_name) unless self.lavels.nil?
+    old_lavels = current_lavels - lavels
+    new_lavels = lavels - current_lavels
+
+    old_lavels.each do |old_lavel|
+      self.lavels.delete Lavel.find_by(lavel_name: old_lavel)
+    end
+
+    new_lavels.each do |new_lavel|
+      task_lavel = Lavel.find_or_create_by(lavel_name: new_lavel)
+      self.lavels << task_lavel
+    end
+  end
+
 end

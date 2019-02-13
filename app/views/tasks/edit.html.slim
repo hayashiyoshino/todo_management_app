@@ -18,8 +18,11 @@ div
   div
     = f.label '未着手 or 着手中 or 完了を選択してください'
     = f.select :status, Task.statuses.keys, selected: Task.statuses
-    div
+  div
     = f.label :priority
     = f.select :priority, Task.priorities.keys, selected: Task.priorities
+  div
+    = f.label "ラベル"
+    ul#task_lavels
   div
     = f.submit class: 'btn light-blue accent-2 margintop_big'
