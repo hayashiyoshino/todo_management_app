@@ -1,6 +1,8 @@
 div.inner_yield
   div
     = link_to '期限近い順で並べ替え', sort_deadline_tasks_path, class: 'btn light-blue accent-2 margintop'
+  div
+    = link_to '期限遠い順で並べ替え', sort_deadlinedesc_tasks_path, class: 'btn light-blue accent-2 margintop'
     div
       ul
         - @tasks.each do |task|

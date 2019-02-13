@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :tasks do
     collection do
       get 'sort_deadline'
+      get 'sort_deadlinedesc'
     end
   end
   root 'tasks#index'

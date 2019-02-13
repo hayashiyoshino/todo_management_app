@@ -49,6 +49,10 @@ class TasksController < ApplicationController
     @tasks = Task.all.order('deadline ASC')
   end
 
+  def sort_deadlinedesc
+    @tasks = Task.all.order('deadline DESC')
+  end
+
   private
 
   def task_params
