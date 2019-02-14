@@ -1,23 +1,13 @@
 div.inner_yield
   div
-    = link_to '期限近い順で並べ替え', sort_deadline_tasks_path, class: 'btn light-blue accent-2 margintop'
-    div.margintop_big
-    = form_tag('/', method: :get) do
-      label for="keyword" タイトルで検索
-      input.search__query[name="keyword" type="text" value="" id="keyword"]
-      input.btn.light-blue.accent-2[title="検索" type="submit" value="検索"]
-    div.margintop
-    = form_with model: @task, url: narrow_down_status_tasks_path, method: :get, local: true do |f|
-      div
-        = f.label '未着手 or 着手中 or 完了 で検索'
-        = f.select :status, Task.statuses.keys
-        = f.submit value: 'ステータスで検索', class: 'btn light-blue accent-2'
-
-
-      ul
+    = link_to '期限近い順で並べ替え', tasks_path(sort: 'asc'), class: 'btn light-blue accent-2 margintop'
+  div
+    = link_to '期限遠い順で並べ替え', tasks_path(sort: 'desc'), class: 'btn light-blue accent-2 margintop'
+    div
+      ul.task_list
         - @tasks.each do |task|
           div
-            li.task_list
+            li.task_item
               = task.title
               span.span_margin
                 | :
@@ -32,4 +22,3 @@ div.inner_yield
               = link_to '編集', edit_task_path(task)
               span.span_margin
               = link_to '削除', task_path(task), method: :delete
-

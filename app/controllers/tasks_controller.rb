@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order("created_at DESC").search(params[:keyword])
+    @tasks = Task..search(params[:keyword]).sort_tasks(params[:sort])
   end
 
   def new
@@ -43,14 +43,6 @@ class TasksController < ApplicationController
   end
 
   def show
-  end
-
-  def sort_deadline
-    @tasks = Task.all.order('deadline ASC')
-  end
-
-  def narrow_down_status
-    @tasks = Task.all.where(status: params[:status])
   end
 
   private
