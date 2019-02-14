@@ -4,7 +4,7 @@ class Task < ApplicationRecord
 
 
 
-  def self.sort_deadline(sort=nil)
+  def self.sort_tasks(sort=nil)
     sort ||=""
     if sort == 'asc'
       order('deadline ASC')

@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = Task.sort_deadline(params[:sort])
+    @tasks = Task.sort_tasks(params[:sort])
   end
 
   def new
