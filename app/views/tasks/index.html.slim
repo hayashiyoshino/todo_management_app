@@ -1,14 +1,21 @@
 div.inner_yield
   div
-    ul
-      - @tasks.each do |task|
-        div
-          li.task_list
-            = task.title
-            span.span_margin
-              | :
-            = task.description
-            span.span_margin
-            = link_to '編集', edit_task_path(task)
-            span.span_margin
-            = link_to '削除', task_path(task), method: :delete
+    = link_to '期限近い順で並べ替え', tasks_path(sort: 'asc'), class: 'btn light-blue accent-2 margintop'
+  div
+    = link_to '期限遠い順で並べ替え', tasks_path(sort: 'desc'), class: 'btn light-blue accent-2 margintop'
+    div
+      ul.task_list
+        - @tasks.each do |task|
+          div
+            li.task_item
+              = task.title
+              span.span_margin
+                | :
+              = task.description
+              span.span_margin
+                | :
+              = task.deadline
+              span.span_margin
+              = link_to '編集', edit_task_path(task)
+              span.span_margin
+              = link_to '削除', task_path(task), method: :delete
