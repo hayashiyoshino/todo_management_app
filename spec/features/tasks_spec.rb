@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-
-
 feature 'Task管理' do
 
   scenario "期限が近い順で並び替えができていること" do
@@ -42,7 +40,6 @@ feature 'Task管理' do
     expect(task[0]).to have_content "4"
   end
 
-
   scenario "Taskを作成する" do
     visit tasks_path
     click_link '新規作成'
@@ -70,6 +67,5 @@ feature 'Task管理' do
     }.to change(Task, :count).by(0)
     expect(page).to have_content "Descriptionを入力してください"
   end
-
 
 end
