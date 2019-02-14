@@ -5,31 +5,31 @@ require 'rails_helper'
 feature 'Task管理' do
 
   scenario "期限が近い順で並び替えができていること" do
-    Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days)
-    Task.create(id: 2, title: '期限2', description: '期限２', deadline: Time.current + 2.days)
-    Task.create(id: 3, title: '期限3', description: '期限３', deadline: Time.current + 6.days)
-    Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days)
+    Task.create(id: 1, title: 'タスク1', description: '期限１', deadline: Time.current + 5.days)
+    Task.create(id: 2, title: 'タスク2', description: '期限２', deadline: Time.current + 2.days)
+    Task.create(id: 3, title: 'タスク3', description: '期限３', deadline: Time.current + 6.days)
+    Task.create(id: 4, title: 'タスク4', description: '期限４', deadline: Time.current + 10.days)
     visit tasks_path
     click_on '期限近い順で並べ替え'
     task = all('.task_item')
-    expect(task[0]).to have_content "2"
-    expect(task[1]).to have_content "1"
-    expect(task[2]).to have_content "3"
-    expect(task[3]).to have_content "4"
+    expect(task[0]).to have_content "タスク2"
+    expect(task[1]).to have_content "タスク1"
+    expect(task[2]).to have_content "タスク3"
+    expect(task[3]).to have_content "タスク4"
   end
 
   scenario "期限が遠い順で並び替えができていること" do
-    Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days)
-    Task.create(id: 2, title: '期限2', description: '期限２', deadline: Time.current + 2.days)
-    Task.create(id: 3, title: '期限3', description: '期限３', deadline: Time.current + 6.days)
-    Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days)
+    Task.create(id: 1, title: 'タスク1', description: '期限１', deadline: Time.current + 5.days)
+    Task.create(id: 2, title: 'タスク2', description: '期限２', deadline: Time.current + 2.days)
+    Task.create(id: 3, title: 'タスク3', description: '期限３', deadline: Time.current + 6.days)
+    Task.create(id: 4, title: 'タスク4', description: '期限４', deadline: Time.current + 10.days)
     visit tasks_path
     click_on '期限遠い順で並べ替え'
     task = all('.task_item')
-    expect(task[0]).to have_content "4"
-    expect(task[1]).to have_content "3"
-    expect(task[2]).to have_content "1"
-    expect(task[3]).to have_content "2"
+    expect(task[0]).to have_content "タスク4"
+    expect(task[1]).to have_content "タスク3"
+    expect(task[2]).to have_content "タスク1"
+    expect(task[3]).to have_content "タスク2"
   end
 
   scenario "作成日時の順番で並び替えができていること" do
