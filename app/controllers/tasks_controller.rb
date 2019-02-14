@@ -45,7 +45,6 @@ class TasksController < ApplicationController
   def show
   end
 
-
   private
 
   def task_params
