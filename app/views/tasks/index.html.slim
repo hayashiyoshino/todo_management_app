@@ -3,6 +3,17 @@ div.inner_yield
     = link_to '期限近い順で並べ替え', tasks_path(sort: 'asc'), class: 'btn light-blue accent-2 margintop'
   div
     = link_to '期限遠い順で並べ替え', tasks_path(sort: 'desc'), class: 'btn light-blue accent-2 margintop'
+    div.margintop_big
+    = form_tag('/', method: :get) do
+      label for="keyword" タイトルで検索
+      input.search__query[name="keyword" type="text" value="" id="keyword"]
+      input.btn.light-blue.accent-2[title="検索" type="submit" value="検索"]
+    div.margintop
+    = form_tag('/', method: :get) do
+      div
+        = label_tag '未着手 or 着手中 or 完了 で検索'
+        = select_tag :sort, options_for_select([["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]])
+        input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
     div
       ul.task_list
         - @tasks.each do |task|
