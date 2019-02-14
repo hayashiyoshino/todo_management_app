@@ -11,7 +11,7 @@ feature 'Task管理' do
     Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days)
     visit tasks_path
     click_on '期限近い順で並べ替え'
-    task = all('.task_list')
+    task = all('.task_item')
     expect(task[0]).to have_content "2"
     expect(task[1]).to have_content "1"
     expect(task[2]).to have_content "3"
@@ -25,7 +25,7 @@ feature 'Task管理' do
     Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days)
     visit tasks_path
     click_on '期限遠い順で並べ替え'
-    task = all('.task_list')
+    task = all('.task_item')
     expect(task[0]).to have_content "4"
     expect(task[1]).to have_content "3"
     expect(task[2]).to have_content "1"
@@ -38,7 +38,7 @@ feature 'Task管理' do
     Task.create(id: 3, title: 'hiii', description: 'hihi3', created_at: Time.current + 2.days, deadline: Time.current + 16.days)
     Task.create(id: 4, title: 'hiiiii', description: 'hihi4', created_at: Time.current + 3.days, deadline: Time.current + 110.days)
     visit tasks_path
-    task = all('.task_list')
+    task = all('.task_item')
     expect(task[0]).to have_content "4"
   end
 
