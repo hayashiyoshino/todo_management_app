@@ -5,4 +5,9 @@
 
 $(document).on 'turbolinks:load', ->
   $('#task_lavels').tagit()
+  lavel_string = $("#lavel_hidden").val()
+  lavel_list = lavel_string.split(',')
+
+  $('#task_lavels').tagit("assignedTags")
+
 
