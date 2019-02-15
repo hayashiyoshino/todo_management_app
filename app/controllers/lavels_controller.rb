@@ -1,2 +1,0 @@
-class LavelsController < ApplicationController
-end
