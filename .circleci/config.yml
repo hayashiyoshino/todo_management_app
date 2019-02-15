@@ -50,24 +50,6 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
-      - run: gem install rubocop
-
-      # Run rubocop
-      - run:
-          name: run rubocop
-          command: |
-            rubocop
-
-      - run:
-          name: run rubocop -l
-          command: |
-            rubocop -l
-
-      - run:
-          name: run rubocop -R
-          command: |
-            rubocop -R
-
       # run tests!
       - run:
           name: run tests

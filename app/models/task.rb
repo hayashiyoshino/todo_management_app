@@ -9,15 +9,16 @@ class Task < ApplicationRecord
 
   def self.sort_tasks(sort=nil)
     sort ||= ""
-    if sort == 'asc'
+    case sort
+    when 'asc'
       order('deadline ASC')
-    elsif sort == 'desc'
+    when 'desc'
       order('deadline DESC')
-    elsif sort == '未着手'
+    when '未着手'
       where(status: '未着手')
-    elsif sort == '着手中'
+    when '着手中'
       where(status: '着手中')
-    elsif sort == '完了'
+    when '完了'
       where(status: '完了')
     else
       order('created_at DESC')
