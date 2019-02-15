@@ -7,6 +7,11 @@ div.inner_yield
       input.search__query[name="keyword" type="text" value="" id="keyword"]
       input.btn.light-blue.accent-2[title="検索" type="submit" value="検索"]
     div.margintop
+    = form_tag('/', method: :get) do
+      label for="keyword" ラベルで検索
+      input.search__query[name="lavel" type="text" value="" id="lavel"]
+      input.btn.light-blue.accent-2[title="ラベルで検索" type="submit" value="ラベルで検索"]
+    div.margintop
     = form_with model: @task, url: narrow_down_status_tasks_path, method: :get, local: true do |f|
       div
         = f.label '未着手 or 着手中 or 完了 で検索'
