@@ -50,6 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'heavens_door'
+  gem 'rubocop'
 end
 
 group :test do
