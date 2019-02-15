@@ -6,7 +6,7 @@ div.inner_yield
     div.margintop_big
     = form_tag('/', method: :get) do
       label for="keyword" タイトルで検索
-      input.search__query[name="keyword" type="text" value="" id="keyword"]
+      input.search__query[name="keyword" type="text" value="#{@keyword}" id="keyword"]
       input.btn.light-blue.accent-2[title="検索" type="submit" value="検索"]
     div.margintop
     = form_tag('/', method: :get) do

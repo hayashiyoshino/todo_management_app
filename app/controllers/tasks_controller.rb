@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.search(params[:keyword]).sort_tasks(params[:sort])
+    @keyword = params[:keyword]
   end
 
   def new
