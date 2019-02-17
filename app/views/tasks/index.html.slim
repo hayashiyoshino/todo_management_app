@@ -52,5 +52,5 @@ div.inner_yield
       - if URI.parse(request.url).query.present?
         = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margintop'
 
-  div.light-blue.accent-2
+  div.light-blue.accent-2.margintop
   = paginate @tasks, class: 'light-blue accent-2'

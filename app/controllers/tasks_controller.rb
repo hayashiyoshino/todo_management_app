@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    lavel_list = params[:tags].split(",")
+    lavel_list = params[:tags]
     @task.save
     if !@task.new_record?
       @task.save_lavels(lavel_list)
@@ -29,8 +29,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    lavel_list = params[:tags].split(",")
+    lavel_list = params[:tags]
     if @task.update(task_params)
+      binding.pry
       @task.save_lavels(lavel_list)
       redirect_to tasks_path
       flash[:notice] = 'TODOを編集しました'

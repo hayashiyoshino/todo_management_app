@@ -78,3 +78,7 @@ nav {
 span a{
   color: #fff;
 }
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
