@@ -3,8 +3,14 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.includes(:user).search(params[:keyword]).sort_tasks(params[:sort]).page(params[:page]).per(10)
+    tasks = current_user.tasks.includes(:user).search(params[:keyword]).sort_tasks(params[:sort]).search_by_lavel(params[:lavelname])
+      if tasks != nil
+        @tasks = tasks.page(params[:page]).per(10)
+      else
+        @tasks = []
+      end
     @keyword = params[:keyword]
+    @lavelname = params[:lavelname]
   end
 
   def new

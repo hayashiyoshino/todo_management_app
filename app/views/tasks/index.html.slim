@@ -11,7 +11,7 @@ div.inner_yield
     div.margintop
     = form_tag('/', method: :get) do
       label for="keyword" ラベルで検索
-      input.search__query[name="lavel" type="text" value="" id="lavel"]
+      input.search__query[name="lavelname" type="text" value="#{@lavelname}" id="lavelname"]
       input.btn.light-blue.accent-2[title="ラベルで検索" type="submit" value="ラベルで検索"]
     div.margintop
     = form_tag('/', method: :get) do
@@ -53,4 +53,5 @@ div.inner_yield
         = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margintop'
 
   div.light-blue.accent-2.margintop
-  = paginate @tasks, class: 'light-blue accent-2'
+  - if @tasks != []
+    = paginate @tasks, class: 'light-blue accent-2'
