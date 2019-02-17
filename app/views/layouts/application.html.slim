@@ -8,6 +8,7 @@ html
     link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"]
     script[src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"]
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track':'reload'
+    = include_gon
     = javascript_include_tag 'application', 'data-turbolinks-track':'reload'
     body
       nav.light-blue.accent-2

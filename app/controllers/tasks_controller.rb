@@ -26,6 +26,7 @@ class TasksController < ApplicationController
 
   def edit
     @lavel_list = @task.lavels.pluck(:lavel_name).join(",")
+    gon.lavel_list = @task.lavels.pluck(:lavel_name).join(",")
   end
 
   def update
