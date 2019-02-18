@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "#create" do
-    expect(FactoryGirl.build(:user)).to be_valid
+  describe "#create" do
+    it "有効なファクトリを持つこと" do
+      expect(FactoryGirl.build(:user)).to be_valid
+    end
+
+    it "名前がなければ無効な状態であること" do
+      user = FactoryGirl.build(:user, name: nil)
+      user.valid?
+      expect(user.errors[:name]).to include("を入力してください")
+    end
   end
 
 end
