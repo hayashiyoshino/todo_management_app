@@ -39,6 +39,14 @@ class Task < ApplicationRecord
       where(status: '着手中')
     when '完了'
       where(status: '完了')
+    when '緊急度０'
+      where(priority: '緊急度０')
+    when '緊急度１'
+      where(priority: '緊急度１')
+    when '緊急度２'
+      where(priority: '緊急度２')
+    when '緊急度３'
+      where(priority: '緊急度３')
     else
       order('created_at DESC')
     end

@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if user
       log_in user
       redirect_to user_path(current_user)
+      flash[:notice] = 'ログインしました！'
     else
       flash[:notice] = 'invalid email/password combination'
       render :new
