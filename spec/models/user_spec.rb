@@ -17,6 +17,11 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:email]).to include("を入力してください")
     end
+
+    it "ユーザーの名前を文字列として返すこと" do
+      user = FactoryGirl.build(:user, name: "kobayashi")
+      expect(user.name).to eq "kobayashi"
+    end
   end
 
 end
