@@ -20,11 +20,11 @@ div.inner_yield
         = select_tag :sort, options_for_select([["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]])
         input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
     div.margintop
-    = form_with model: @task, url: tasks_path, method: :get, local: true do |f|
+    = form_tag('/', method: :get) do
       div
-        = f.label :sortpriority
-        = f.select :sortpriority, Task.priorities.keys
-        = f.submit value: '緊急度で検索', class: 'btn light-blue accent-2'
+        = label_tag '緊急度で検索'
+        = select_tag :sort, options_for_select([["緊急度０", "緊急度０"], ["緊急度１", "緊急度１"], ["緊急度２", "緊急度２"], ["緊急度３", "緊急度３"]])
+        input.btn.light-blue.accent-2[title="緊急度で検索" type="submit" value="緊急度で検索"]
     div
       ul.task_list
         - @tasks.each do |task|
@@ -48,10 +48,11 @@ div.inner_yield
               span.span_margin
               = link_to '削除', task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }
 
-    div
-      - if URI.parse(request.url).query.present?
-        = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margintop'
+  div
+    - if URI.parse(request.url).query.present?
+      = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margintop'
 
   div.light-blue.accent-2.margintop
   - if @tasks != []
     = paginate @tasks, class: 'light-blue accent-2'
+
