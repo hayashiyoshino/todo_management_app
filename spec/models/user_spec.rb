@@ -11,6 +11,12 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:name]).to include("を入力してください")
     end
+
+    it "emailがなければ無効な状態であること" do
+      user = FactoryGirl.build(:user, email: nil)
+      user.valid?
+      expect(user.errors[:email]).to include("を入力してください")
+    end
   end
 
 end
