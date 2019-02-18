@@ -22,6 +22,13 @@ RSpec.describe User, type: :model do
       user = FactoryGirl.build(:user, name: "kobayashi")
       expect(user.name).to eq "kobayashi"
     end
+
+    it "重複したメールアドレスなら無効な状態であること" do
+      FactoryGirl.create(:user, email: "aaron@example.com")
+      user = FactoryGirl.build(:user, email: "aaron@example.com")
+      user.valid?
+      expect(user.errors[:email]).to include("はすでに存在します")
+    end
   end
 
 end
