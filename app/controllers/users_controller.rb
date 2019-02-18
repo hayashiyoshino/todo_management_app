@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       redirect_to @user
+      flash[:notice] = "新規登録しました！"
     else
       render :new
     end

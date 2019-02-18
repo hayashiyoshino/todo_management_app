@@ -1,94 +1,137 @@
 require 'rails_helper'
 
-
-
 feature 'Task管理' do
 
+  scenario"ユーザー登録ができること" do
+
+  end
+
   scenario "期限が近い順で並び替えができていること" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
-    taskmodel = Task.create(id: 1, title: '期限1', description: '期限１', deadline: Time.current + 5.days, user_id: 1)
-    Task.create(id: 2, title: '期限2', description: '期限２', deadline: Time.current + 2.days, user_id: 1)
-    Task.create(id: 3, title: '期限3', description: '期限３', deadline: Time.current + 6.days, user_id: 1)
-    Task.create(id: 4, title: '期限4', description: '期限４', deadline: Time.current + 10.days, user_id: 1)
-    visit tasks_path
+    4.times { FactoryGirl.create(:task) }
+    visit '/login'
+    fill_in 'Email', with: 'tester1@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
     click_on '期限近い順で並べ替え'
-    task = all('.task_list')
-    task_0 = task[0]
-    task_1 = task[1]
-    task_2 = task[2]
-    task_3 = task[3]
-    expect(task_0).to have_content "2"
-    expect(task_1).to have_content "1"
-    expect(task_2).to have_content "3"
-    expect(task_3).to have_content "4"
+    tasks = all('.task_item')
+    expect(tasks[0]).to have_content "task1"
+    expect(tasks[1]).to have_content "task2"
+    expect(tasks[2]).to have_content "task3"
+    expect(tasks[3]).to have_content "task4"
+  end
+
+  scenario "期限が遠い順で並び替えができていること" do
+    4.times { FactoryGirl.create(:task) }
+    visit '/login'
+    fill_in 'Email', with: 'tester5@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
+    click_on '期限遠い順で並べ替え'
+    tasks = all('.task_item')
+    expect(tasks[0]).to have_content "task8"
+    expect(tasks[1]).to have_content "task7"
+    expect(tasks[2]).to have_content "task6"
+    expect(tasks[3]).to have_content "task5"
   end
 
   scenario "作成日時の順番で並び替えができていること" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
-    Task.create(id: 1, title: 'hi', description: 'hi', deadline: Time.current + 15.day, user_id: 1)
-    Task.create(id: 2, title: 'hi', description: 'hihi2', created_at: Time.current + 1.days, deadline: Time.current + 12.days, user_id: 1)
-    Task.create(id: 3, title: 'hiii', description: 'hihi3', created_at: Time.current + 2.days, deadline: Time.current + 16.days, user_id: 1)
-    Task.create(id: 4, title: 'hiiiii', description: 'hihi4', created_at: Time.current + 3.days, deadline: Time.current + 110.days, user_id: 1)
-    visit tasks_path
-    task = all('.task_list')
-    task_0 = task[0]
-    expect(task_0).to have_content "4"
+    4.times { FactoryGirl.create(:task) }
+    visit '/login'
+    fill_in 'Email', with: 'tester9@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
+    tasks = all('.task_item')
+    expect(tasks[0]).to have_content "9"
   end
 
+  #ログイン機能作ってから
+  # scenario "Taskを作成する" do
+  #   visit tasks_path
+  #   click_link '新規作成'
+  #   fill_in 'Title', with: 'hello'
+  #   fill_in 'Description', with: 'helloworld'
+  #   click_button '登録する'
+  #   expect(page).to have_content 'TODOを新規作成しました！'
+  # end
 
-  scenario "Taskを作成する" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
-    visit tasks_path
-    click_link '新規作成'
-    fill_in 'Title', with: 'hello'
-    fill_in 'Description', with: 'helloworld'
-    click_button '登録する'
-    expect(page).to have_content 'TODOを新規作成しました！'
-  end
   scenario "Taskの新規作成時にtitleが''だとエラーが表示される" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
-    visit tasks_path
+    FactoryGirl.create(:user)
+    visit '/login'
+    fill_in 'Email', with: 'tester13@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
     click_link '新規作成'
     fill_in 'Title', with: ''
-    expect {
-      click_button '登録する'
-    }.to change(Task, :count).by(0)
+    fill_in 'Description', with: 'aaa'
+    click_button '登録する'
     expect(page).to have_content "Titleを入力してください"
   end
 
   scenario "Taskの新規作成時にdescriptionが''だとエラーが表示される" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
-    visit tasks_path
+    FactoryGirl.create(:user)
+    visit '/login'
+    fill_in 'Email', with: 'tester14@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
     click_link '新規作成'
+    fill_in 'Title', with: 'aaa'
     fill_in 'Description', with: ''
-    expect {
-      click_button '登録する'
-    }.to change(Task, :count).by(0)
+    click_button '登録する'
     expect(page).to have_content "Descriptionを入力してください"
   end
 
   scenario "検索した文字列と一致するタイトルを返す" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
-    task1 = Task.create(id: 1, title: "hello", description: "oo", user_id: 1)
-    task2 = Task.create(id: 2, title: "hellorspec", description: "oo", user_id: 1)
-    task3 = Task.create(id: 3, title: "helloruby", description: "oo", user_id: 1)
-    task4 = Task.create(id: 4, title: "helloworld", description: "oo", user_id: 1)
-    task5 = Task.create(id: 5, title: "hellorails", description: "oo", user_id: 1)
-    visit tasks_path
+    FactoryGirl.create(:task, title: "hello")
+    FactoryGirl.create(:task, title: "hellorspec")
+    FactoryGirl.create(:task, title: "helloruby")
+    FactoryGirl.create(:task, title: "helloworld")
+    FactoryGirl.create(:task, title: "hellorails")
+    visit '/login'
+    fill_in 'Email', with: 'tester15@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
     fill_in 'タイトルで検索', with: 'rspec'
     click_button '検索'
     expect(page).to have_content "hellorspec"
   end
 
+  scenario "ステータスで検索する" do
+    FactoryGirl.create(:task, title: "hello", status: 0)
+    FactoryGirl.create(:task, title: "hellorspec", status: 1)
+    FactoryGirl.create(:task, title: "helloruby", status: 2)
+    FactoryGirl.create(:task, title: "helloworld", status: 1)
+    FactoryGirl.create(:task, title: "hellorails", status: 0)
+    visit '/login'
+    fill_in 'Email', with: 'tester20@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
+    select '完了'
+    click_button 'ステータスで検索'
+    expect(page).to have_content "ruby"
+    expect(page).to_not have_content "rspec"
+    expect(page).to_not have_content "world"
+    expect(page).to_not have_content "rails"
+  end
+
   scenario "優先順位で検索する" do
-    user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
-    task1 = Task.create(id: 1, title: "hello", description: "oo", priority: 0, user_id: 1)
-    task2 = Task.create(id: 2, title: "hellorspec", description: "oo", priority: 1, user_id: 1)
-    task3 = Task.create(id: 3, title: "helloruby", description: "oo", priority: 2, user_id: 1)
-    task4 = Task.create(id: 4, title: "helloworld", description: "oo", priority: 3, user_id: 1)
-    task5 = Task.create(id: 5, title: "hellorails", description: "oo", priority: 0, user_id: 1)
-    visit tasks_path
-    select '緊急度３', from: 'Sortpriority'
+    FactoryGirl.create(:task, title: "hello", priority: 0)
+    FactoryGirl.create(:task, title: "hellorspec", priority: 1)
+    FactoryGirl.create(:task, title: "helloruby", priority: 2)
+    FactoryGirl.create(:task, title: "helloworld", priority: 3)
+    FactoryGirl.create(:task, title: "hellorails", priority: 0)
+    visit '/login'
+    fill_in 'Email', with: 'tester25@example.com'
+    fill_in 'Password digest', with: '11111111'
+    click_on 'ログイン'
+    click_on 'TODOリスト'
+    select '緊急度３'
     click_button '緊急度で検索'
     expect(page).to have_content "world"
     expect(page).to_not have_content "rspec"
