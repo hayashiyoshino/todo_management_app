@@ -17,6 +17,7 @@
 .nav_padding {
   padding-left:25px;
 }
+
 .inner_yield ul, .inner_yield ol {
   padding: 0;
   position: relative;
@@ -36,7 +37,7 @@
   margin: 0 10px;
 }
 
-.margintop{
+.margintop {
   margin-top: 10px;
 }
 

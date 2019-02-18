@@ -1,8 +1,11 @@
 FactoryGirl.define do
+
   factory :task do
-    sequence(:title)          { Faker::Name.name }
-    sequence(:description)    { Faker::Lorem.sentence }
-    sequence(:status)         { Faker::Number.between(0, 2)}
-    sequence(:user_id)        { Faker::Number.between(1, 2)}
+    sequence(:title) { |n| "task#{n}"}
+    sequence(:description) { |n| "descriiption#{n}"}
+    sequence(:deadline) { |n| "#{Date.current + n.days}"}
+    sequence(:created_at) { |n| "#{Time.current} - #{n.days}"}
+    association :user, factory: :user
   end
+
 end
