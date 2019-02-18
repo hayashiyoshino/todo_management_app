@@ -80,14 +80,29 @@ feature 'Task管理' do
     expect(page).to have_content "hellorspec"
   end
 
-  scenario "優先順位で検索する" do
-    task1 = Task.create(id: 1, title: "hello", description: "oo", priority: 0)
-    task2 = Task.create(id: 2, title: "hellorspec", description: "oo", priority: 1)
-    task3 = Task.create(id: 3, title: "helloruby", description: "oo", priority: 2)
-    task4 = Task.create(id: 4, title: "helloworld", description: "oo", priority: 3)
-    task5 = Task.create(id: 5, title: "hellorails", description: "oo", priority: 0)
+  scenario "ステータスで検索する" do
+    Task.create(id: 1, title: "hello", description: "oo", status: 0)
+    Task.create(id: 2, title: "hellorspec", description: "oo", status: 1)
+    Task.create(id: 3, title: "helloruby", description: "oo", status: 2)
+    Task.create(id: 4, title: "helloworld", description: "oo", status: 1)
+    Task.create(id: 5, title: "hellorails", description: "oo", status: 0)
     visit tasks_path
-    select '緊急度３', from: 'Sortpriority'
+    select '完了'
+    click_button 'ステータスで検索'
+    expect(page).to have_content "ruby"
+    expect(page).to_not have_content "rspec"
+    expect(page).to_not have_content "wordl"
+    expect(page).to_not have_content "rails"
+  end
+
+  scenario "優先順位で検索する" do
+    Task.create(id: 1, title: "hello", description: "oo", priority: 0)
+    Task.create(id: 2, title: "hellorspec", description: "oo", priority: 1)
+    Task.create(id: 3, title: "helloruby", description: "oo", priority: 2)
+    Task.create(id: 4, title: "helloworld", description: "oo", priority: 3)
+    Task.create(id: 5, title: "hellorails", description: "oo", priority: 0)
+    visit tasks_path
+    select '緊急度３'
     click_button '緊急度で検索'
     expect(page).to have_content "world"
     expect(page).to_not have_content "rspec"
