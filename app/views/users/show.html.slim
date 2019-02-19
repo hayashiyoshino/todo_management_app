@@ -9,3 +9,27 @@ div.margintop_big
     label ユーザーの名前で検索
     input.search_query[name="username" type="text" value="#{@username}"]
     input.btn.light-blue.accent-2[title="ユーザーの名前で検索" type="submit" value="ユーザーの名前で検索"]
+
+- if @tasks != nil
+  div.inner_yield
+    ul.task_list
+      - @tasks.each do |task|
+        div
+          li.task_item
+            = task.title
+            span.span_margin
+              | :
+            = task.description
+            span.span_margin
+              | :
+            = task.deadline
+            span.span_margin
+              | :
+            = task.status
+            span.span_margin
+              | :
+            = task.priority
+            span.span_margin
+            = link_to '編集', edit_task_path(task)
+            span.span_margin
+            = link_to '削除', task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }
