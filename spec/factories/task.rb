@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:deadline) { |n| "#{Date.current + n.days}"}
     sequence(:created_at) { |n| "#{Time.current} - #{n.days}"}
     association :user, factory: :user
+    association :group, factory: :group
   end
 end
