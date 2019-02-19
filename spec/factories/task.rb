@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :task do
     sequence(:title) { |n| "task#{n}"}
     sequence(:description) { |n| "descriiption#{n}"}
@@ -7,5 +6,4 @@ FactoryGirl.define do
     sequence(:created_at) { |n| "#{Time.current} - #{n.days}"}
     association :user, factory: :user
   end
-
 end
