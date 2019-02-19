@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_090640) do
+ActiveRecord::Schema.define(version: 2019_02_19_115850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_090640) do
     t.integer "status", default: 0, null: false
     t.integer "priority", default: 0, null: false
     t.integer "user_id"
+    t.integer "group_id"
     t.index ["title"], name: "index_tasks_on_title"
   end
 
