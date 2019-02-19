@@ -52,4 +52,13 @@ class Task < ApplicationRecord
     end
   end
 
+  def deadline_alert
+    self.each do |task|
+      if task.deadline < Date.current
+
+      end
+    end
+  end
+  # if task.deadline < Date.current
+
 end

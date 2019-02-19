@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    gon.tasks = current_user.tasks.includes(:user).where("deadline < ?", Date.current).map(&:title)
   end
 
   private
