@@ -7,7 +7,10 @@ feature 'Task管理' do
   end
 
   scenario "期限が近い順で並び替えができていること" do
-    4.times { FactoryGirl.create(:task) }
+    task = FactoryGirl.create(:task, deadline: Date.current + 1)
+    FactoryGirl.create(:task, deadline: Date.current + 2, user_id: task.user.id)
+    FactoryGirl.create(:task, deadline: Date.current + 3, user_id: task.user.id)
+    FactoryGirl.create(:task, deadline: Date.current + 4, user_id: task.user.id)
     visit '/login'
     fill_in 'Email', with: 'tester1@example.com'
     fill_in 'Password digest', with: '11111111'
@@ -22,9 +25,12 @@ feature 'Task管理' do
   end
 
   scenario "期限が遠い順で並び替えができていること" do
-    4.times { FactoryGirl.create(:task) }
+    task = FactoryGirl.create(:task, deadline: Date.current + 1)
+    FactoryGirl.create(:task, deadline: Date.current + 2, user_id: task.user.id)
+    FactoryGirl.create(:task, deadline: Date.current + 3, user_id: task.user.id)
+    FactoryGirl.create(:task, deadline: Date.current + 4, user_id: task.user.id)
     visit '/login'
-    fill_in 'Email', with: 'tester5@example.com'
+    fill_in 'Email', with: 'tester2@example.com'
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
@@ -37,30 +43,26 @@ feature 'Task管理' do
   end
 
   scenario "作成日時の順番で並び替えができていること" do
-    4.times { FactoryGirl.create(:task) }
+    task = FactoryGirl.create(:task, created_at: Time.current - 1)
+    FactoryGirl.create(:task, created_at: Time.current - 2, user_id: task.user.id)
+    FactoryGirl.create(:task, created_at: Time.current - 3, user_id: task.user.id)
+    FactoryGirl.create(:task, created_at: Time.current - 4, user_id: task.user.id)
     visit '/login'
-    fill_in 'Email', with: 'tester9@example.com'
+    fill_in 'Email', with: 'tester3@example.com'
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
     tasks = all('.task_item')
     expect(tasks[0]).to have_content "9"
+    expect(tasks[1]).to have_content "10"
+    expect(tasks[2]).to have_content "11"
+    expect(tasks[3]).to have_content "12"
   end
-
-  #ログイン機能作ってから
-  # scenario "Taskを作成する" do
-  #   visit tasks_path
-  #   click_link '新規作成'
-  #   fill_in 'Title', with: 'hello'
-  #   fill_in 'Description', with: 'helloworld'
-  #   click_button '登録する'
-  #   expect(page).to have_content 'TODOを新規作成しました！'
-  # end
 
   scenario "Taskの新規作成時にtitleが''だとエラーが表示される" do
     FactoryGirl.create(:user)
     visit '/login'
-    fill_in 'Email', with: 'tester13@example.com'
+    fill_in 'Email', with: 'tester4@example.com'
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
@@ -74,7 +76,7 @@ feature 'Task管理' do
   scenario "Taskの新規作成時にdescriptionが''だとエラーが表示される" do
     FactoryGirl.create(:user)
     visit '/login'
-    fill_in 'Email', with: 'tester14@example.com'
+    fill_in 'Email', with: 'tester5@example.com'
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
@@ -86,13 +88,13 @@ feature 'Task管理' do
   end
 
   scenario "検索した文字列と一致するタイトルを返す" do
-    FactoryGirl.create(:task, title: "hello")
-    FactoryGirl.create(:task, title: "hellorspec")
-    FactoryGirl.create(:task, title: "helloruby")
-    FactoryGirl.create(:task, title: "helloworld")
-    FactoryGirl.create(:task, title: "hellorails")
+    task = FactoryGirl.create(:task, title: "hello")
+    FactoryGirl.create(:task, title: "hellorspec", user_id: task.user.id)
+    FactoryGirl.create(:task, title: "helloruby", user_id: task.user.id)
+    FactoryGirl.create(:task, title: "helloworld", user_id: task.user.id)
+    FactoryGirl.create(:task, title: "hellorails", user_id: task.user.id)
     visit '/login'
-    fill_in 'Email', with: 'tester15@example.com'
+    fill_in 'Email', with: 'tester6@example.com'
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
@@ -102,13 +104,13 @@ feature 'Task管理' do
   end
 
   scenario "ステータスで検索する" do
-    FactoryGirl.create(:task, title: "hello", status: 0)
-    FactoryGirl.create(:task, title: "hellorspec", status: 1)
-    FactoryGirl.create(:task, title: "helloruby", status: 2)
-    FactoryGirl.create(:task, title: "helloworld", status: 1)
-    FactoryGirl.create(:task, title: "hellorails", status: 0)
+    task = FactoryGirl.create(:task, title: "hello", status: 0)
+    FactoryGirl.create(:task, title: "hellorspec", status: 1, user_id: task.user.id)
+    FactoryGirl.create(:task, title: "helloruby", status: 2, user_id: task.user.id)
+    FactoryGirl.create(:task, title: "helloworld", status: 1, user_id: task.user.id)
+    FactoryGirl.create(:task, title: "hellorails", status: 0, user_id: task.user.id)
     visit '/login'
-    fill_in 'Email', with: 'tester20@example.com'
+    fill_in 'Email', with: 'tester7@example.com'
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
@@ -121,13 +123,13 @@ feature 'Task管理' do
   end
 
   scenario "優先順位で検索する" do
-    FactoryGirl.create(:task, title: "hello", priority: 0)
-    FactoryGirl.create(:task, title: "hellorspec", priority: 1)
-    FactoryGirl.create(:task, title: "helloruby", priority: 2)
-    FactoryGirl.create(:task, title: "helloworld", priority: 3)
-    FactoryGirl.create(:task, title: "hellorails", priority: 0)
+    task = FactoryGirl.create(:task, title: "hello", priority: 0)
+    FactoryGirl.create(:task, title: "hellorspec", priority: 1, user_id: task.user.id)
+    FactoryGirl.create(:task, title: "helloruby", priority: 2, user_id: task.user.id)
+    FactoryGirl.create(:task, title: "helloworld", priority: 3, user_id: task.user.id)
+    FactoryGirl.create(:task, title: "hellorails", priority: 0, user_id: task.user.id)
     visit '/login'
-    fill_in 'Email', with: 'tester25@example.com'
+    fill_in 'Email', with: 'tester8@example.com'
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
