@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_091218) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.boolean "admin", default: false
-    t.integer "user_id"
+    t.integer "group_id"
   end
 
 end
