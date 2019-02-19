@@ -2,3 +2,10 @@
   div.margintop_big
   span.span_margin_big.btn.light-blue.accent-2
     = link_to "管理者ページ", admin_users_path
+
+div.margintop_big
+  | 他のユーザーのタスクを見る
+  = form_tag("/users/#{current_user.id}", method: :get) do
+    label ユーザーの名前で検索
+    input.search_query[name="username" type="text" value="#{@username}"]
+    input.btn.light-blue.accent-2[title="ユーザーの名前で検索" type="submit" value="ユーザーの名前で検索"]

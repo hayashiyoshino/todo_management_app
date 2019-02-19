@@ -19,6 +19,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     gon.overtasks = current_user.tasks.includes(:user).where("deadline < ?", Date.current).map(&:title)
     gon.neartasks = current_user.tasks.includes(:user).where(deadline: Date.current..Date.current+3)
+    if params[:username]
+      @username = User.find_by(name: params[:username])
+      if @username != nil
+        @tasks = Task.where(user_id: @username.id)
+      else
+        redirect_to @user
+        flash[:notice] = "そのようなユーザーはいません"
+      end
+    end
   end
 
   private
