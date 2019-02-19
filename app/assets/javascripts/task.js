@@ -8,12 +8,12 @@ $(document).on('turbolinks:load', function() {
        $('#task_lavels').tagit('createTag', tags[i])
      }
   }
-  if (gon.overtasks.length != 0　) {
+  if (gon.overtasks.length != 0　&& document.referrer == 'http://localhost:3000/login') {
     new_tasks = gon.overtasks.map(x =>'『' + x + '』\n')
     new_task = new_tasks.join(',')
     window.alert('これらのタスクの期限が過ぎています！！！！\n' + new_task)
   }
-  if (gon.neartasks.length != 0 ) {
+  if (gon.neartasks.length != 0 && document.referrer == 'http://localhost:3000/login') {
     console.log(gon.neartasks)
     new_neartasks = gon.neartasks.map(x =>'『' +  x + '』\n')
     new_neartask = new_neartasks.join(',')
