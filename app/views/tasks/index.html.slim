@@ -11,15 +11,16 @@ div.inner_yield
     div.margintop
     = form_tag('/', method: :get) do
       div
-        = label_tag '未着手 or 着手中 or 完了 で検索'
-        = select_tag :sort, options_for_select([["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]])
-        input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
-    div.margintop
-    = form_tag('/', method: :get) do
-      div
-        = label_tag '緊急度で検索'
-        = select_tag :sort, options_for_select([["緊急度０", "緊急度０"], ["緊急度１", "緊急度１"], ["緊急度２", "緊急度２"], ["緊急度３", "緊急度３"]])
-        input.btn.light-blue.accent-2[title="緊急度で検索" type="submit" value="緊急度で検索"]
+        = label_tag 'pickup', 'ステータスを選択してください', name: "pickup"
+        = select_tag :pickup, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]})
+        = label_tag 'pickuppriority', '緊急度を選択してください', name: "pickuppriority"
+        = select_tag :pickuppriority, options_for_select(Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]})
+        input.btn.light-blue.accent-2[title="この条件で検索" type="submit" value="この条件で検索"]
+    /     input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
+    / div.margintop
+    / = form_tag('/', method: :get) do
+    /   div
+
     div
       ul.task_list
         - @tasks.each do |task|
@@ -34,10 +35,10 @@ div.inner_yield
               = task.deadline
               span.span_margin
                 | :
-              = task.status
+              = task.status_i18n
               span.span_margin
                 | :
-              = task.priority
+              = task.priority_i18n
               span.span_margin
               = link_to '編集', edit_task_path(task)
               span.span_margin
