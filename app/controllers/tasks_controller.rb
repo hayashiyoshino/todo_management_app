@@ -3,16 +3,16 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.search(params[:keyword]).sort_tasks(params[:sort]).page(params[:page]).per(10)
     @keyword = params[:keyword]
+    @tasks = current_user.tasks.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).page(params[:page]).per(10)
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     @task.save
     if !@task.new_record?
       redirect_to tasks_path
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :deadline, :status, :priority).merge(user_id: current_user.id)
+    params.require(:task).permit(:title, :description, :deadline, :status, :priority)
   end
 
   def set_task

@@ -114,8 +114,8 @@ feature 'Task管理' do
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
-    select '完了'
-    click_button 'ステータスで検索'
+    select '完了', from: 'ステータスを選択してください'
+    click_button 'この条件で検索'
     expect(page).to have_content "ruby"
     expect(page).to_not have_content "rspec"
     expect(page).to_not have_content "world"
@@ -133,8 +133,8 @@ feature 'Task管理' do
     fill_in 'Password digest', with: '11111111'
     click_on 'ログイン'
     click_on 'TODOリスト'
-    select '緊急度３'
-    click_button '緊急度で検索'
+    select '緊急度３', from: '緊急度を選択してください'
+    click_button 'この条件で検索'
     expect(page).to have_content "world"
     expect(page).to_not have_content "rspec"
     expect(page).to_not have_content "ruby"
@@ -142,3 +142,4 @@ feature 'Task管理' do
   end
 
 end
+
