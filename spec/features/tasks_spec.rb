@@ -31,16 +31,6 @@ feature 'Task管理' do
     expect(tasks[0]).to have_content "9"
   end
 
-  #ログイン機能作ってから
-  # scenario "Taskを作成する" do
-  #   visit tasks_path
-  #   click_link '新規作成'
-  #   fill_in 'Title', with: 'hello'
-  #   fill_in 'Description', with: 'helloworld'
-  #   click_button '登録する'
-  #   expect(page).to have_content 'TODOを新規作成しました！'
-  # end
-
   scenario "Taskの新規作成時にtitleが''だとエラーが表示される" do
     user = User.create(id: 1, name: "hayashi", email: 'ttt@com')
     visit tasks_path
