@@ -12,7 +12,7 @@ div.inner_yield
     = form_tag('/', method: :get) do
       div
         = label_tag '未着手 or 着手中 or 完了 で検索'
-        = select_tag :sort, options_for_select([["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]])
+        = select_tag :pickup, options_for_select([["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]])
         input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
     div
       ul.task_list

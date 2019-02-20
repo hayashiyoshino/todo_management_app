@@ -9,11 +9,18 @@ class Task < ApplicationRecord
 
   def self.sort_tasks(sort=nil)
     sort ||= ""
-    case sort
-    when 'asc'
+    if sort == 'asc'
       order('deadline ASC')
-    when 'desc'
+    elsif sort == 'desc'
       order('deadline DESC')
+    else
+      order('created_at DESC')
+    end
+  end
+
+  def self.pickup_tasks(pickup=nil)
+    pickup ||= ""
+    case pickup
     when '未着手'
       where(status: '未着手')
     when '着手中'
@@ -21,7 +28,7 @@ class Task < ApplicationRecord
     when '完了'
       where(status: '完了')
     else
-      order('created_at DESC')
+      all
     end
   end
 
