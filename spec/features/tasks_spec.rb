@@ -87,8 +87,8 @@ feature 'Task管理' do
     Task.create(id: 4, title: "helloworld", description: "oo", status: 1)
     Task.create(id: 5, title: "hellorails", description: "oo", status: 0)
     visit tasks_path
-    select '完了'
-    click_button 'ステータスで検索'
+    select '完了', from: 'ステータスを選択してください'
+    click_button 'この条件で検索'
     expect(page).to have_content "ruby"
     expect(page).to_not have_content "rspec"
     expect(page).to_not have_content "wordl"
@@ -102,8 +102,9 @@ feature 'Task管理' do
     Task.create(id: 4, title: "helloworld", description: "oo", priority: 3)
     Task.create(id: 5, title: "hellorails", description: "oo", priority: 0)
     visit tasks_path
-    select '緊急度３'
-    click_button '緊急度で検索'
+    select '緊急度３', from: '緊急度を選択してください'
+    save_and_open_page
+    click_button 'この条件で検索'
     expect(page).to have_content "world"
     expect(page).to_not have_content "rspec"
     expect(page).to_not have_content "ruby"
@@ -111,3 +112,4 @@ feature 'Task管理' do
   end
 
 end
+
