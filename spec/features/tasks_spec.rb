@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Task管理' do
 
   scenario "期限が近い順で並び替えができていること" do
-    4.times { FactoryGirl.create(:task) }
+    FactoryGirl.create_list(:task, 4)
     visit tasks_path
     click_on '期限近い順で並べ替え'
     tasks = all('.task_item')
@@ -14,7 +14,7 @@ feature 'Task管理' do
   end
 
   scenario "期限が遠い順で並び替えができていること" do
-    4.times { FactoryGirl.create(:task) }
+    FactoryGirl.create_list(:task, 4)
     visit tasks_path
     click_on '期限遠い順で並べ替え'
     tasks = all('.task_item')
