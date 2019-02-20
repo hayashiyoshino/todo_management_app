@@ -11,8 +11,8 @@ div.inner_yield
     div.margintop
     = form_tag('/', method: :get) do
       div
-        = label_tag '未着手 or 着手中 or 完了 で検索'
-        = select_tag :sort, options_for_select([["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]])
+        = label_tag 'ステータスを選択してください'
+        = select_tag :pickup, options_for_select(Task.statuses.keys)
         input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
     div.margintop
     = form_tag('/', method: :get) do
@@ -43,6 +43,6 @@ div.inner_yield
               span.span_margin
               = link_to '削除', task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }
 
-    div
+  div
     -if URI.parse(request.url).query.present?
       = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margintop'
