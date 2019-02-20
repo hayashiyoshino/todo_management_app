@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
-  enum status: [:未着手, :着手中, :完了]
+  enum status: [:untouched, :working, :done]
 
   def self.search(keyword = nil)
     where('title LIKE(?)', "%#{keyword}%")
@@ -21,12 +21,12 @@ class Task < ApplicationRecord
   def self.pickup_tasks(pickup)
     return all if pickup.blank?
     case pickup
-    when '未着手'
-      where(status: '未着手')
-    when '着手中'
-      where(status: '着手中')
-    when '完了'
-      where(status: '完了')
+    when 'untouched'
+      where(status: 'untouched')
+    when 'working'
+      where(status: 'working')
+    when 'done'
+      where(status: 'done')
     end
   end
 
