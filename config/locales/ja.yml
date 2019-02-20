@@ -6,6 +6,11 @@ ja:
         untouched: "未完了"
         working: "着手中"
         done: "完了"
+      priority:
+        level0: "緊急度０"
+        level1: "緊急度１"
+        level2: "緊急度２"
+        level3: "緊急度３"
   activerecord:
     errors:
       messages:
