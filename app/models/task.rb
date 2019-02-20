@@ -18,8 +18,8 @@ class Task < ApplicationRecord
     end
   end
 
-  def self.pickup_tasks(pickup=nil)
-    pickup ||= ""
+  def self.pickup_tasks(pickup)
+    return all if pickup.blank?
     case pickup
     when '未着手'
       where(status: '未着手')
@@ -27,8 +27,6 @@ class Task < ApplicationRecord
       where(status: '着手中')
     when '完了'
       where(status: '完了')
-    else
-      all
     end
   end
 
