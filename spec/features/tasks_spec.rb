@@ -103,7 +103,6 @@ feature 'Task管理' do
     Task.create(id: 5, title: "hellorails", description: "oo", priority: 0)
     visit tasks_path
     select '緊急度３', from: '緊急度を選択してください'
-    save_and_open_page
     click_button 'この条件で検索'
     expect(page).to have_content "world"
     expect(page).to_not have_content "rspec"
