@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @keyword = params[:keyword]
-    @tasks = Task.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup])
+    @tasks = Task.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority])
   end
 
   def new
