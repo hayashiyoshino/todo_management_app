@@ -3,8 +3,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.search(params[:keyword]).sort_tasks(params[:sort]).page(params[:page]).per(10)
     @keyword = params[:keyword]
+    @tasks = Task.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).page(params[:page]).per(10)
   end
 
   def new
