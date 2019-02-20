@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @keyword = params[:keyword]
-    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority])
+    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).search_by_lavel(params[:lavelname])
       if tasks != nil
         @tasks = tasks.page(params[:page]).per(10)
       else
@@ -39,7 +39,6 @@ class TasksController < ApplicationController
   def update
     lavel_list = params[:tags]
     if @task.update(task_params)
-      binding.pry
       @task.save_lavels(lavel_list)
       redirect_to tasks_path
       flash[:notice] = 'TODOを編集しました'
