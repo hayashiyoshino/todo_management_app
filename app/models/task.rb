@@ -28,14 +28,22 @@ class Task < ApplicationRecord
       where(status: 'working')
     when 'done'
       where(status: 'done')
-    when '緊急度０'
-      where(priority: '緊急度０')
-    when '緊急度１'
-      where(priority: '緊急度１')
-    when '緊急度２'
-      where(priority: '緊急度２')
-    when '緊急度３'
-      where(priority: '緊急度３')
+    else
+      all
+    end
+  end
+
+  def self.pickup_priority_tasks(priority)
+    return all if priority.blank?
+    case priority
+    when 'level0'
+      where(priority: 'level0')
+    when 'level1'
+      where(priority: 'level1')
+    when 'level2'
+     where(priority: 'level2')
+    when 'level3'
+      where(priority: 'level3')
     else
       all
     end
