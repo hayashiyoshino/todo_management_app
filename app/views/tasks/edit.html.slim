@@ -17,6 +17,6 @@ div
     = f.date_field :deadline
   div
     = f.label 'ステータスを選択してください'
-    = f.select :status, Task.statuses.keys, selected: Task.statuses
+    = f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}, selected: Task.statuses
   div
     = f.submit class: 'btn light-blue accent-2 margintop'
