@@ -18,8 +18,8 @@ div
   div
     = f.label 'ステータスを選択してください'
   = f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}, selected: Task.statuses
-    div
+  div
     = f.label :priority
-    = f.select :priority, Task.priorities.keys, selected: Task.priorities
+    = f.select :priority, Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]}, selected: Task.priorities
   div
     = f.submit class: 'btn light-blue accent-2 margintop'
