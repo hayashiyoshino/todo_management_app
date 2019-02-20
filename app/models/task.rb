@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
-  enum status: [:未着手, :着手中, :完了]
+  enum status: [:untouched, :working, :done]
   enum priority: [:緊急度０, :緊急度１, :緊急度２, :緊急度３]
 
   def self.search(keyword = nil)
@@ -19,15 +19,15 @@ class Task < ApplicationRecord
     end
   end
 
-  def self.pickup_tasks(pickup=nil)
-    pickup ||= ""
+  def self.pickup_tasks(pickup)
+    return all if pickup.blank?
     case pickup
-    when '未着手'
-      where(status: '未着手')
-    when '着手中'
-      where(status: '着手中')
-    when '完了'
-      where(status: '完了')
+    when 'untouched'
+      where(status: 'untouched')
+    when 'working'
+      where(status: 'working')
+    when 'done'
+      where(status: 'done')
     when '緊急度０'
       where(priority: '緊急度０')
     when '緊急度１'

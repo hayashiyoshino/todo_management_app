@@ -12,7 +12,7 @@ div.inner_yield
     = form_tag('/', method: :get) do
       div
         = label_tag 'ステータスを選択してください'
-        = select_tag :pickup, options_for_select(Task.statuses.keys)
+        = select_tag :pickup, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]})
         input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
     div.margintop
     = form_tag('/', method: :get) do
@@ -34,7 +34,7 @@ div.inner_yield
               = task.deadline
               span.span_margin
                 | :
-              = task.status
+              = task.status_i18n
               span.span_margin
                 | :
               = task.priority
