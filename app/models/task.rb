@@ -2,7 +2,7 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   enum status: [:untouched, :working, :done]
-  enum priority: [:緊急度０, :緊急度１, :緊急度２, :緊急度３]
+  enum priority: [:level0, :level1, :level2, :level3]
 
   def self.search(keyword = nil)
     where('title LIKE(?)', "%#{keyword}%")
