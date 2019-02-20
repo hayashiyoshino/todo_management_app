@@ -79,6 +79,8 @@ GEM
     crass (1.0.4)
     database_cleaner (1.7.0)
     diff-lcs (1.3)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.8.0)
     execjs (2.7.0)
     factory_girl (4.9.0)
@@ -91,6 +93,7 @@ GEM
     ffi (1.10.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    heavens_door (0.1.5)
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
@@ -282,8 +285,10 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   database_cleaner
+  enum_help
   factory_girl_rails
   faker
+  heavens_door
   html2slim
   jbuilder (~> 2.5)
   kaminari
