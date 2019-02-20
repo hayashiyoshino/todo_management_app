@@ -80,7 +80,7 @@ feature 'Task管理' do
     expect(page).to have_content "hellorspec"
   end
 
-  scenario "ステータスで検索する" do
+  scenario "ステータスでを検索する" do
     Task.create(id: 1, title: "hello", description: "oo", status: 0)
     Task.create(id: 2, title: "hellorspec", description: "oo", status: 1)
     Task.create(id: 3, title: "helloruby", description: "oo", status: 2)
@@ -95,7 +95,7 @@ feature 'Task管理' do
     expect(page).to_not have_content "rails"
   end
 
-  scenario "優先順位で検索する" do
+  scenario "優先順位を検索する" do
     Task.create(id: 1, title: "hello", description: "oo", priority: 0)
     Task.create(id: 2, title: "hellorspec", description: "oo", priority: 1)
     Task.create(id: 3, title: "helloruby", description: "oo", priority: 2)
