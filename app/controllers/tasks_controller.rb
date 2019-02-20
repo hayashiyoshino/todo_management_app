@@ -3,7 +3,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    tasks = current_user.tasks.includes(:user).search(params[:keyword]).sort_tasks(params[:sort]).search_by_lavel(params[:lavelname])
+    @keyword = params[:keyword]
+    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority])
       if tasks != nil
         @tasks = tasks.page(params[:page]).per(10)
       else
@@ -14,11 +15,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     lavel_list = params[:tags]
     @task.save
     if !@task.new_record?
@@ -63,7 +64,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :deadline, :status, :priority).merge(user_id: current_user.id)
+    params.require(:task).permit(:title, :description, :deadline, :status, :priority)
   end
 
   def set_task
