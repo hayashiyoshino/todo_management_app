@@ -16,14 +16,14 @@ div
     = f.label :deadline
     = f.date_field :deadline
   div
-    = f.label '未着手 or 着手中 or 完了を選択してください'
-    = f.select :status, Task.statuses.keys, selected: Task.statuses
+    = f.label 'ステータスを選択してください'
+    = f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}, selected: Task.statuses
   div
     = f.label :priority
-    = f.select :priority, Task.priorities.keys, selected: Task.priorities
+    = f.select :priority, Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]}, selected: Task.priorities
   div
     = f.label "ラベル追加"
     ul#task_lavels
     = hidden_field_tag :lavel_hidden, @lavel_list
   div
-    = f.submit class: 'btn light-blue accent-2 margintop_big'
+    = f.submit class: 'btn light-blue accent-2 margin_top_big'

@@ -1,10 +1,10 @@
 class User < ApplicationRecord
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   has_many :tasks, dependent: :destroy
   has_many :groups, through: :group_user, dependent: :destroy
   has_secure_password
   validates :name, presence: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, uniqueness: true, format: {with: VALID_EMAIL_REGEX}
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: {minimum: 6}
   before_destroy :check_admin_exist
   before_update :check_admin_exist
