@@ -40,3 +40,11 @@
 .margintop {
   margin-top: 10px;
 }
+
+.margintop_big{
+  margin-top: 30px;
+}
+
+select {
+  display: block;
+}

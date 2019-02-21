@@ -3,6 +3,17 @@ div.inner_yield
     = link_to '期限近い順で並べ替え', tasks_path(sort: 'asc'), class: 'btn light-blue accent-2 margintop'
   div
     = link_to '期限遠い順で並べ替え', tasks_path(sort: 'desc'), class: 'btn light-blue accent-2 margintop'
+    div.margintop_big
+    = form_tag('/', method: :get) do
+      label for="keyword" タイトルで検索
+      input.search__query[name="keyword" type="text" value="#{@keyword}" id="keyword"]
+      input.btn.light-blue.accent-2[title="検索" type="submit" value="検索"]
+    div.margintop
+    = form_tag('/', method: :get) do
+      div
+        = label_tag 'ステータスを選択してください'
+        = select_tag :pickup, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]})
+        input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
     div
       ul.task_list
         - @tasks.each do |task|
@@ -16,6 +27,13 @@ div.inner_yield
                 | :
               = task.deadline
               span.span_margin
+                | :
+              = task.status_i18n
+              span.span_margin
               = link_to '編集', edit_task_path(task)
               span.span_margin
-              = link_to '削除', task_path(task), method: :delete
+              = link_to '削除', task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }
+
+  div
+    -if URI.parse(request.url).query.present?
+      = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margintop'

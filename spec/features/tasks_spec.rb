@@ -9,11 +9,11 @@ feature 'Task管理' do
     Task.create(id: 4, title: 'タスク4', description: '期限４', deadline: Time.current + 10.days)
     visit tasks_path
     click_on '期限近い順で並べ替え'
-    task = all('.task_item')
-    expect(task[0]).to have_content "タスク2"
-    expect(task[1]).to have_content "タスク1"
-    expect(task[2]).to have_content "タスク3"
-    expect(task[3]).to have_content "タスク4"
+    tasks = all('.task_item')
+    expect(tasks[0]).to have_content "タスク2"
+    expect(tasks[1]).to have_content "タスク1"
+    expect(tasks[2]).to have_content "タスク3"
+    expect(tasks[3]).to have_content "タスク4"
   end
 
   scenario "期限が遠い順で並び替えができていること" do
@@ -23,11 +23,11 @@ feature 'Task管理' do
     Task.create(id: 4, title: 'タスク4', description: '期限４', deadline: Time.current + 10.days)
     visit tasks_path
     click_on '期限遠い順で並べ替え'
-    task = all('.task_item')
-    expect(task[0]).to have_content "タスク4"
-    expect(task[1]).to have_content "タスク3"
-    expect(task[2]).to have_content "タスク1"
-    expect(task[3]).to have_content "タスク2"
+    tasks = all('.task_item')
+    expect(tasks[0]).to have_content "タスク4"
+    expect(tasks[1]).to have_content "タスク3"
+    expect(tasks[2]).to have_content "タスク1"
+    expect(tasks[3]).to have_content "タスク2"
   end
 
   scenario "作成日時の順番で並び替えができていること" do
@@ -36,8 +36,8 @@ feature 'Task管理' do
     Task.create(id: 3, title: 'hiii', description: 'hihi3', created_at: Time.current + 2.days, deadline: Time.current + 16.days)
     Task.create(id: 4, title: 'hiiiii', description: 'hihi4', created_at: Time.current + 3.days, deadline: Time.current + 110.days)
     visit tasks_path
-    task = all('.task_item')
-    expect(task[0]).to have_content "4"
+    tasks = all('.task_item')
+    expect(tasks[0]).to have_content "4"
   end
 
   scenario "Taskを作成する" do
@@ -66,6 +66,18 @@ feature 'Task管理' do
       click_button '登録する'
     }.to change(Task, :count).by(0)
     expect(page).to have_content "Descriptionを入力してください"
+  end
+
+  scenario "検索した文字列と一致するタイトルを返す" do
+    Task.create(id: 1, title: "hello", description: "oo")
+    Task.create(id: 2, title: "hellorspec", description: "oo")
+    Task.create(id: 3, title: "helloruby", description: "oo")
+    Task.create(id: 4, title: "helloworld", description: "oo")
+    Task.create(id: 5, title: "hellorails", description: "oo")
+    visit tasks_path
+    fill_in 'タイトルで検索', with: 'rspec'
+    click_button '検索'
+    expect(page).to have_content "hellorspec"
   end
 
 end

@@ -10,10 +10,13 @@ div
     = f.label :title
     = f.text_field :title
   div
-    = f.label :Description
+    = f.label :description
     = f.text_area :description
   div
     = f.label :deadline
     = f.date_field :deadline
   div
-      = f.submit
+    = f.label 'ステータスを選択してください'
+    = f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}, selected: Task.statuses
+  div
+    = f.submit class: 'btn light-blue accent-2 margintop'

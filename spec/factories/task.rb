@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :task do
-    title           'hello'
-    description     'helloworld'
+    sequence(:title)          { Faker::Name.name }
+    sequence(:description)    { Faker::Lorem.sentence }
+    sequence(:status)         { Faker::Number.between(0, 2)}
   end
 end
