@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   resources 'users'
   resources 'groups', only: [:index, :new, :create]
-  resources 'group_users', only: [:new, :create, :index]
+  resources 'group_users', only: [:new, :create, :index, :show]
 
   namespace :admin do
     resources :users do

@@ -1,8 +1,13 @@
 class GroupUsersController < ApplicationController
 
   def index
-    group = Group.find(params[:group_id])
-    @users = group.users
+    @group = Group.find(params[:group_id])
+    @users = @group.users
+    # user_id = params[:user_id]
+    # if user_id != nil
+    #   user = User.find(user_id)
+    #   @tasks = user.tasks
+    # end
   end
 
   def new
@@ -17,6 +22,11 @@ class GroupUsersController < ApplicationController
       redirect_to user_path(current_user)
       flash[:notice] = '参加に失敗しました'
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @tasks = @user.tasks
   end
 
 
