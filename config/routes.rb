@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   resources 'users'
-  resources 'groups', only: [:new, :create]
+  resources 'groups', only: [:index, :new, :create, :show]
+  resources 'group_users', only: [:new, :create]
 
   namespace :admin do
     resources :users do
