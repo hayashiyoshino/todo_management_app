@@ -1,8 +1,11 @@
-div.margin_top_big
-  | メンバー一覧
+div.margin_top_big.fontsize_midium
+  = @group.group_name
+  | グループメンバー一覧
 
 div.margin_top_big
   - @users.each do |user|
-    = link_to user.name, group_user_path(id: user.id, group_id: @group.id)
-    | さんのタスクを見る
+    div.margin_top
+      = link_to user.name, group_user_path(id: user.id, group_id: @group.id)
+      span.span_margin
+      | さんのタスクを見る
 
