@@ -1,5 +1,10 @@
 class GroupUsersController < ApplicationController
 
+  def index
+    group = Group.find(params[:group_id])
+    @users = group.users
+  end
+
   def new
   end
 
@@ -13,6 +18,8 @@ class GroupUsersController < ApplicationController
       flash[:notice] = '参加に失敗しました'
     end
   end
+
+
 
   private
   def group_user_params
