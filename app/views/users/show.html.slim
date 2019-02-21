@@ -29,8 +29,11 @@ div.margin_top_big
 
 
 div.margin_top_big
-  - current_user.groups.each do |group|
-    = link_to group.group_name, 
+  | 参加中のグループ一覧
+  div.margin_top
+    - current_user.groups.each do |group|
+      = link_to group.group_name, group_users_path(group_id: group.id)
+
 
 
 
