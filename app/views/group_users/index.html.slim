@@ -1,0 +1,4 @@
+div.margin_top_big
+  - @users.each do |user|
+    = link_to user.name, group_users_path(user_id: user.id)
+    | さんのタスクを見る
