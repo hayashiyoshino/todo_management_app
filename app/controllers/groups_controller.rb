@@ -16,14 +16,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    binding.pry
-    @group = current_user.groups.first_or_initialize(group_params)
-    if @group.save
-      redirect_to user_path(current_user)
-      flash[:notice] = 'グループに参加しました！'
-    else
-      render :new
-    end
+
   end
 
   def show
