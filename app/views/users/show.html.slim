@@ -11,6 +11,9 @@ div.margin_top_big
     = f.hidden_field :id, value: current_user.id
     = f.submit class: 'btn light-blue accent-2', value: 'グループ検索'
 
+    span.span_margin
+    = link_to 'グループ新規作成', new_group_path
+
 - if @group != nil
   div.margin_top_big.fontsize_midium
     = @group.group_name
@@ -20,11 +23,15 @@ div.margin_top_big
       = f.submit class: 'btn light-blue accent-2', value: 'このグループに参加する'
 
 
+
+
+
 div.margin_top_big.fontsize_small
   | 参加中のグループ一覧
   div.margin_top
     - current_user.groups.each do |group|
-      = link_to group.group_name, group_users_path(group_id: group.id)
+      div.margin_top
+        = link_to group.group_name, group_users_path(group_id: group.id)
 
 
 

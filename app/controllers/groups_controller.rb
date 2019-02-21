@@ -16,7 +16,15 @@ class GroupsController < ApplicationController
   end
 
   def create
-
+    @group = Group.where(group_params).first_or_initialize
+    if @group.save
+      if GroupUser.where(group_id: @group.id, user_id: current_user.id) == []
+        current_user.groups << @group
+      end
+      redirect_to user_path(current_user)
+    else
+      render :new
+    end
   end
 
   def show

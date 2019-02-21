@@ -3,11 +3,6 @@ class GroupUsersController < ApplicationController
   def index
     @group = Group.find(params[:group_id])
     @users = @group.users
-    # user_id = params[:user_id]
-    # if user_id != nil
-    #   user = User.find(user_id)
-    #   @tasks = user.tasks
-    # end
   end
 
   def new
