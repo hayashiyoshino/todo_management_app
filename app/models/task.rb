@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   belongs_to :group
   has_many :task_lavels
   has_many :lavels, through: :task_lavels
+  has_many_attached :files
   validates :title, presence: true
   validates :description, presence: true
   enum status: [:untouched, :working, :done]
