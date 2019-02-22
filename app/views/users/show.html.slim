@@ -1,9 +1,19 @@
+-if @user.image
+  div.margin_top
+    = image_tag rails_blob_path(@user.image), class: 'image_size'
+    pan.span_margin
+    = @user.name
+    span.span_margin
+    | さんのページ
+
+
+
 - if @user.admin?
   div.margin_top_big
     span.btn.light-blue.accent-2
       = link_to "管理者ページ", admin_users_path
 
-div.margin_top_big
+div.margin_top_big_big
   | グループ検索
   = form_with model: @group, url: groups_path, method: :get, local: true  do |f|
     = f.label "グループ名を入力してください"

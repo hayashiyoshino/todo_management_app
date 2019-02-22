@@ -51,6 +51,10 @@
   margin-top: 30px;
 }
 
+.margin_top_big_big{
+  margin-top: 60px;
+}
+
 .padding_midium{
   padding: 10px;
 }
@@ -81,4 +85,9 @@ span a{
 
 .ui-helper-hidden-accessible {
   display: none;
+}
+
+.image_size {
+  height: 100px;
+  width: 100px;
 }
