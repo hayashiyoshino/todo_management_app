@@ -20,4 +20,7 @@ div.margin_top_big.fontsize_midium
     = f.label :password_confirmation
     = f.password_field :password_confirmation
   div
+    = f.label 'プロフィール画像を設定'
+    = f.file_field :image
+  div
     = f.submit value: "新規登録", class: 'btn light-blue accent-2'
