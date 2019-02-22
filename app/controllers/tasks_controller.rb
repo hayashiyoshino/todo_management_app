@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_sign_in
-  before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :set_task, only: [:edit, :update, :destroy, :download]
 
   def index
     @keyword = params[:keyword]
@@ -69,6 +69,11 @@ class TasksController < ApplicationController
   end
 
   def show
+  end
+
+  def download
+    data = @task.file.download
+    send_data(data, type: 'image/png', filename: 'download.jpg')
   end
 
   private
