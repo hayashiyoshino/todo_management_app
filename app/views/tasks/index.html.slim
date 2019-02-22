@@ -16,10 +16,6 @@ div.inner_yield
         = label_tag 'pickuppriority', '緊急度を選択してください', name: "pickuppriority"
         = select_tag :pickuppriority, options_for_select(Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]})
         input.btn.light-blue.accent-2[title="この条件で検索" type="submit" value="この条件で検索"]
-    /     input.btn.light-blue.accent-2[title="ステータスで検索" type="submit" value="ステータスで検索"]
-    / div.margin_top
-    / = form_tag('/', method: :get) do
-    /   div
 
     div
       ul.task_list
