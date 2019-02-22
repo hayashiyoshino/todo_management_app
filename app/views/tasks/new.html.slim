@@ -18,7 +18,7 @@ div
     = f.date_field :deadline
   div
     = f.label :priority
-    = f.select :priority, Task.priorities.keys, selected: Task.priorities
+    = f.select :priority, Task.priorities.keys
   div
     = f.label "ラベル追加"
     ul#task_lavels
