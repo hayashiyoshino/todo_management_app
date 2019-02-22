@@ -21,6 +21,9 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_params)
     lavel_list = params[:tags]
+    if file = params[:task][:file]
+      @task.file.attach(file)
+    end
     @task.save
     if !@task.new_record?
       @task.save_lavels(lavel_list)
@@ -38,6 +41,9 @@ class TasksController < ApplicationController
 
   def update
     lavel_list = params[:tags]
+    if files = params[:task][:file]
+      @task.file.attach(file)
+    end
     if @task.update(task_params)
       if lavel_list.present?
         @task.save_lavels(lavel_list)
@@ -68,7 +74,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :deadline, :status, :priority, :files)
+    params.require(:task).permit(:title, :description, :deadline, :status, :priority, :file)
   end
 
   def set_task
