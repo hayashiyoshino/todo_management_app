@@ -41,7 +41,7 @@ class TasksController < ApplicationController
 
   def update
     lavel_list = params[:tags]
-    if files = params[:task][:file]
+    if file = params[:task][:file]
       @task.file.attach(file)
     end
     if @task.update(task_params)

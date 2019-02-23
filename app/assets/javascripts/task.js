@@ -7,8 +7,8 @@ $(document).on('turbolinks:load', function() {
     for (i in tags){
        $('#task_lavels').tagit('createTag', tags[i])
      }
-  }
-  if (document.referrer == "http://localhost:3000/login"){
+  };
+  if (document.referrer == "http://localhost:3000/login") {
     if (gon.overtasks.length != 0　) {
       new_tasks = gon.overtasks.map(x =>'『' + x + '』\n')
       new_task = new_tasks.join(',')
