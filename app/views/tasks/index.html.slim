@@ -48,6 +48,8 @@ div.inner_yield
               span.span_margin
               = link_to '削除', task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }
 
+  div.margin_top
+    = link_to 'カレンダーで確認', '/tasks/calendar'
   div
     - if URI.parse(request.url).query.present?
       = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margin_top'
@@ -55,14 +57,6 @@ div.inner_yield
   div.light-blue.accent-2.margintop
   - if @tasks != []
     = paginate @tasks, class: 'light-blue accent-2'
-
-
-div.margin_top_big.margin_bottom
-  = month_calendar events: @tasks, attribute: :deadline do |date, tasks|
-    = date
-    - tasks.each do |task|
-      div
-        = task.title
 
 
 

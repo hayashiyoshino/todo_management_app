@@ -76,6 +76,10 @@ class TasksController < ApplicationController
     send_data(data, type: 'image/png', filename: 'download.jpg')
   end
 
+  def calendar
+    @tasks = Task.all
+  end
+
   private
 
   def task_params
