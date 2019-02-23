@@ -6,12 +6,32 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    if image = params[:user][:image]
+      @user.image.attach(image)
+    end
     if @user.save
       log_in @user
       redirect_to @user
       flash[:notice] = "新規登録しました！"
     else
       render :new
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if image = params[:user][:image]
+      @user.image.attach(image)
+    end
+    if @user.update(user_params)
+      redirect_to @user
+      flash[:notice] = "プロフィールを更新しました！"
+    else
+      render :edit
     end
   end
 
