@@ -29,5 +29,3 @@
 /vendor/bundle
 
 /.idea
-
-/config/credentials.yml.enc
