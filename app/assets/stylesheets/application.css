@@ -39,6 +39,10 @@
   margin: 0 10px;
 }
 
+.span_margin_midium {
+  margin: 0 15px;
+}
+
 .span_margin_big {
   margin: 0 30px;
 }
@@ -90,4 +94,9 @@ span a{
 .image_size {
   height: 100px;
   width: 100px;
+}
+
+.image_size_small {
+  height: 30px;
+  width: 30px;
 }
