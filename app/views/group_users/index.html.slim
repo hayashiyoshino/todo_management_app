@@ -5,6 +5,11 @@ div.margin_top_big.fontsize_midium
 div.margin_top_big
   - @users.each do |user|
     div.margin_top
+      span.span_margin
+        - if user.image.attached?
+          = image_tag rails_blob_path(user.image), class: 'image_size_small'
+        - else
+          span.span_margin_midium
       = link_to user.name, group_user_path(id: user.id, group_id: @group.id)
       span.span_margin
       | さんのタスクを見る
