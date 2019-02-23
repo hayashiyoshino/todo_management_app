@@ -1,4 +1,7 @@
 div.margin_top_big
+  span.span_margin
+    - if @user.image.attached?
+      = image_tag rails_blob_path(@user.image), class: 'image_size_small'
   = @user.name
   | さんのタスク一覧
 
