@@ -1,10 +1,11 @@
--if @user.image
+div.margin_top.fontsize_small
+  = @user.name
+  span.span_margin
+  | さんのページ
+-if @user.image.attached?
   div.margin_top
     = image_tag rails_blob_path(@user.image), class: 'image_size'
-    pan.span_margin
-    = @user.name
-    span.span_margin
-    | さんのページ
+
 
 
 
@@ -65,6 +66,9 @@ div.margin_top_big.fontsize_small
             span.span_margin
               | :
             = task.priority
+            - if task.file.attached?
+              span.span_margin
+              = link_to '添付ファイルをダウンロード', "tasks/download/#{task.id}", :style => "color:blue;"
             span.span_margin
             = link_to '編集', edit_task_path(task)
             span.span_margin
