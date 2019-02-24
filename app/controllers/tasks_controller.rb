@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @keyword = params[:keyword]
-    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).search_by_lavel(params[:lavelname])
+    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).search_by_lavel(params[:lavelname]).rank(:row_order)
       if tasks != nil
         @tasks = tasks.page(params[:page]).per(10)
       else
