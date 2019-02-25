@@ -77,6 +77,7 @@ end
 
 gem 'slim-rails'
 gem 'html2slim'
+gem 'kaminari'
 gem 'enum_help'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

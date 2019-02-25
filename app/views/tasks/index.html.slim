@@ -41,5 +41,7 @@ div.inner_yield
               = link_to '削除', task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }
 
   div
-    -if URI.parse(request.url).query.present?
+    - if URI.parse(request.url).query.present?
       = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margintop'
+  div.light-blue.accent-2
+  = paginate @tasks, class: 'light-blue accent-2'
