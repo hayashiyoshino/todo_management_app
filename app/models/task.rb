@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   enum status: [:untouched, :working, :done]
+  enum priority: [:level0, :level1, :level2, :level3]
 
   def self.search(keyword = nil)
     where('title LIKE(?)', "%#{keyword}%")
@@ -20,14 +21,12 @@ class Task < ApplicationRecord
 
   def self.pickup_tasks(pickup)
     return all if pickup.blank?
-    case pickup
-    when 'untouched'
-      where(status: 'untouched')
-    when 'working'
-      where(status: 'working')
-    when 'done'
-      where(status: 'done')
-    end
+    where(status: pickup)
+  end
+
+  def self.pickup_priority_tasks(priority)
+    return all if priority.blank?
+    where(priority: priority)
   end
 
 end

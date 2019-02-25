@@ -17,4 +17,7 @@ div
     = f.label :deadline
     = f.date_field :deadline
   div
+    = f.label :priority
+    = f.select :priority, Task.priorities.keys
+  div
       = f.submit class: 'btn light-blue accent-2 margintop'

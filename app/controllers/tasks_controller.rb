@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @keyword = params[:keyword]
-    @tasks = Task.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup])
+    @tasks = Task.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority])
   end
 
   def new
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :deadline, :status)
+    params.require(:task).permit(:title, :description, :deadline, :status, :priority)
   end
 
   def set_task
