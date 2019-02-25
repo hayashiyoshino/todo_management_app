@@ -85,6 +85,19 @@ class TasksController < ApplicationController
     @task.update(task_params)
   end
 
+  def chart
+    current_user.tasks.each do |task|
+      @lavels = []
+      @lavels << task.lavels
+    end
+    binding.pry
+    @data =  @lavels[0].group(:id).count(:id).values
+    lavel_ids = @lavels[0].group(:id).count(:id).keys
+    @lavels = lavel_ids.map{|id| Lavel.find(id).lavel_name }
+    gon.lavels = @lavels
+    gon.data = @data
+  end
+
   private
 
   def task_params
