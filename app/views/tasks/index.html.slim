@@ -23,10 +23,10 @@ div.inner_yield
         input.btn.light-blue.accent-2[title="この条件で検索" type="submit" value="この条件で検索"]
 
     div
-      ul.task_list
+      ul.task_list.table-sortable
         - @tasks.each do |task|
           div
-            li.task_item
+            li.task_item.item(data = { model_name: task.class.name.underscore, updata_url: task_sort_path(task) })
               = task.title
               span.span_margin
                 | :
