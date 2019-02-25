@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_sign_in
-  before_action :set_task, only: [:edit, :update, :destroy, :download]
+  before_action :set_task, only: [:edit, :update, :destroy, :download, :sort]
 
   def index
     @keyword = params[:keyword]
@@ -80,10 +80,15 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def sort
+    @task.update(task_params)
+    render nothing: true
+  end
+
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :deadline, :status, :priority, :file)
+    params.require(:task).permit(:title, :description, :deadline, :status, :priority, :file, :row_order_position)
   end
 
   def set_task
