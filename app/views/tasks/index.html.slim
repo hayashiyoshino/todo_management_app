@@ -50,8 +50,8 @@ div.inner_yield
 
   div.margin_top
     = link_to 'カレンダーで確認', '/tasks/calendar'
-    span.span_margin
-      = link_to 'ラベルの使用割合を確認', '/tasks/chart'
+  div.margin_top
+    = link_to 'ラベルの使用割合を確認', '/tasks/chart'
   div
     - if URI.parse(request.url).query.present?
       = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margin_top'
