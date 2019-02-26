@@ -39,9 +39,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     gon.overtasks = current_user.tasks.includes(:user).where("deadline < ?", Date.current).map(&:title)
     gon.neartasks = current_user.tasks.includes(:user).where(deadline: Date.current..Date.current+3)
-    if (request.referer == "https://agile-citadel-24997.herokuapp.com/login") && (gon.neartasks != nil)
-      UserMailer.alert_email(@user).deliver_later
-    end
     userparam = params[:username]
     if userparam.present?
       username = User.find_by(name: params[:username])
