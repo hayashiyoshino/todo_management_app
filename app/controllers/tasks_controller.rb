@@ -87,16 +87,15 @@ class TasksController < ApplicationController
 
   def chart
     tasks = current_user.tasks.includes(:lavels)
+    @lavels = []
     tasks.each do |task|
-      @lavels = []
       task.lavels.each do |lavel|
       @lavels << lavel
       end
     end
-    binding.pry
-    @data =  @lavels.group_by{|lavel| lavel.id}.count(:id).values
-    lavel_ids = @lavels.group(:id).count(:id).keys
-    @lavels = lavel_ids.map{|id| Lavel.find(id).lavel_name }
+    @data =  @lavels.group_by{ |lavel| lavel }.values.map{ |ar| ar.size }
+    lavel_ids = @lavels.group_by{|lavel|lavel}.keys.map{|i|i.id}
+    @lavels = lavel_ids.map{ |id| Lavel.find(id).lavel_name }
     gon.lavels = @lavels
     gon.data = @data
   end
