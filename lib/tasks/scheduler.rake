@@ -3,8 +3,9 @@ task :send_alert_mail => :environment do
   puts "Sending mail..."
   
   User.each do |user|
-    user.tasks.each do |task|
-    
+    limit_tasks = user.tasks.includes(:user).where(deadline: Date.current..Date.current+3)
+    if limit_tasks != nil
+      UserMailer.alert_email(user).deliver_later
     end
   end
   # NewsFeed.update
