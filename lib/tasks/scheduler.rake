@@ -8,10 +8,5 @@ task :send_alert_mail => :environment do
       UserMailer.alert_email(user).deliver_later
     end
   end
-  # NewsFeed.update
   puts "done."
-end
-
-task :send_reminders => :environment do
-  User.send_reminders
 end
