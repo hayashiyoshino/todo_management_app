@@ -15,10 +15,14 @@ html
           .nav-wrapper
             a.brand-logo[href="/tasks"]
               | TODOリスト
-            ul#nav-mobile.right.hide-on-med-and-down
-              li
-                a[href="tasks/new"]
-                  | 新規作成
+            - if current_user
+              ul#nav-mobile.right.hide-on-med-and-down
+                li
+                  a[href="/tasks/new"]
+                    | 新規作成
+                li
+                  a[href="/logout" data-method="delete"]
+                    | ログアウト
 
       - if flash[:notice]
         p

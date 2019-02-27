@@ -37,11 +37,11 @@
   margin: 0 10px;
 }
 
-.margintop {
+.margin_top {
   margin-top: 10px;
 }
 
-.margintop_big{
+.margin_top_big{
   margin-top: 30px;
 }
 
@@ -55,4 +55,8 @@ nav {
     width: 100%;
     height: 56px;
     line-height: 56px;
+}
+
+.fontsize_midium {
+  font-size: 28px;
 }

@@ -51,6 +51,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop'
+  gem 'heavens_door'
 end
 
 group :test do
@@ -78,6 +79,7 @@ end
 gem 'slim-rails'
 gem 'html2slim'
 gem 'kaminari'
+gem 'bcrypt'
 gem 'enum_help'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

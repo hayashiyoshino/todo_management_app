@@ -1,17 +1,18 @@
 class TasksController < ApplicationController
+  before_action :require_sign_in
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
     @keyword = params[:keyword]
-    @tasks = Task.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).page(params[:page]).per(10)
+    @tasks = current_user.tasks.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).page(params[:page]).per(10)
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     @task.save
     if !@task.new_record?
       redirect_to tasks_path
@@ -54,6 +55,10 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def require_sign_in
+    redirect_to login_path unless current_user
   end
 
 

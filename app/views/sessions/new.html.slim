@@ -1,0 +1,16 @@
+div.margintop_big.fontsize_midium
+  | ログイン
+  div.margintop_big
+
+= form_with scope: :session, url: login_path, local: true do |f|
+  div
+    = f.label :email
+    = f.text_field :email
+  div
+    = f.label :password_digest
+    = f.text_field :password_digest
+  div
+    = f.submit value: "ログイン", class: 'btn light-blue accent-2'
+
+div.margintop_big
+  = link_to "新規登録", new_user_path
