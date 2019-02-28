@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :require_admin_user
-  before_action :set_user only: [:edit, :update, :destroy, :show, :user_tasks]
+  before_action :set_user, only: [:edit, :update, :destroy, :show, :user_tasks]
 
   def index
     @users = User.all.order("created_at DESC").includes(:tasks)
