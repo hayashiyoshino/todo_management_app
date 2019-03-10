@@ -1,0 +1,27 @@
+div.inner_yield
+  div.margintop_big.fontsize_midium
+    = @user.name
+    span.span_margin
+    | のタスク一覧
+
+
+  ul
+    - @tasks.each do |task|
+      div
+        li.task_list
+          = task.title
+          span.span_margin
+            | :
+          = task.description
+          span.span_margin
+            | :
+          = task.deadline
+          span.span_margin
+            | :
+          = task.status
+          span.span_margin
+            | :
+          = task.priority
+
+  div.light-blue.accent-2
+  = paginate @tasks, class: 'light-blue accent-2'
