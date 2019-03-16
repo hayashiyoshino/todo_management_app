@@ -1,5 +1,5 @@
 div.margintop_big.fontsize_midium
-  | 新規登録
+  | ユーザー編集
   div.margintop_big
 
 - if @user.errors.any?
@@ -20,4 +20,8 @@ div.margintop_big.fontsize_midium
     = f.label :password_confirmation
     = f.password_field :password_confirmation
   div
+    = f.label :admin
+    = f.select :admin, [["非管理者", "false"],["管理者", "true"]]
+
+  div.margintop_big
     = f.submit value: "新規登録", class: 'btn light-blue accent-2'

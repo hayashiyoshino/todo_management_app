@@ -18,30 +18,30 @@ This is a task management application.
 
 ### Association
 - belongs_to :user
-- has_many :task_tags
+- has_many :task_lavels
 
 
-## tags table
+## lavels table
 
 |Column      |Type       |Option                      |
 |------------|-----------|----------------------------|
-|tag_name    |string     |null: false                 |
+|lavel_name  |string     |null: false                 |
 
 
 ### Association
-- has_many :task_tags
+- has_many :task_lavels
 
 
-## task_tags table
+## task_lavels table
 
 |Column      |Type       |Option                         |
 |------------|-----------|-------------------------------|
 |task_id     |integer    |null: false, foreign_key: true |
-|tag_id      |integer    |null: false, foreign_key: true |
+|lavel_id    |integer    |null: false, foreign_key: true |
 
 ### Association
 - belongs_to :task
-- belongs_to :tag
+- belongs_to :lavel
 
 
 ## users table

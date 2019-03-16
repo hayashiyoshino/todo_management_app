@@ -4,7 +4,14 @@ class TasksController < ApplicationController
 
   def index
     @keyword = params[:keyword]
-    @tasks = current_user.tasks.search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).page(params[:page]).per(10)
+    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).search_by_lavel(params[:lavelname])
+      if tasks != nil
+        @tasks = tasks.page(params[:page]).per(10)
+      else
+        @tasks = []
+      end
+    @keyword = params[:keyword]
+    @lavelname = params[:lavelname]
   end
 
   def new
@@ -13,8 +20,10 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new(task_params)
+    lavel_list = params[:tags]
     @task.save
     if !@task.new_record?
+      @task.save_lavels(lavel_list)
       redirect_to tasks_path
       flash[:notice] = 'TODOを新規作成しました！'
     else
@@ -23,10 +32,14 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @lavel_list = @task.lavels.pluck(:lavel_name).join(",")
+    gon.lavel_list = @task.lavels.pluck(:lavel_name).join(",")
   end
 
   def update
+    lavel_list = params[:tags]
     if @task.update(task_params)
+      @task.save_lavels(lavel_list)
       redirect_to tasks_path
       flash[:notice] = 'TODOを編集しました'
     else

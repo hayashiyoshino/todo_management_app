@@ -22,5 +22,8 @@ div
     = f.label :priority
     = f.select :priority, Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]}, selected: Task.priorities
   div
-    = f.submit class: 'btn light-blue accent-2 margin_top'
-
+    = f.label "ラベル追加"
+    ul#task_lavels
+    = hidden_field_tag :lavel_hidden, @lavel_list
+  div
+    = f.submit class: 'btn light-blue accent-2 margin_top_big'

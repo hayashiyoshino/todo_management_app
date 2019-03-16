@@ -10,6 +10,11 @@ div.inner_yield
       input.btn.light-blue.accent-2[title="検索" type="submit" value="検索"]
     div.margin_top
     = form_tag('/', method: :get) do
+      label for="keyword" ラベルで検索
+      input.search__query[name="lavelname" type="text" value="#{@lavelname}" id="lavelname"]
+      input.btn.light-blue.accent-2[title="ラベルで検索" type="submit" value="ラベルで検索"]
+    div.margintop
+    = form_tag('/', method: :get) do
       div
         = label_tag 'pickup', 'ステータスを選択してください', name: "pickup"
         = select_tag :pickup, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]})
@@ -43,5 +48,8 @@ div.inner_yield
   div
     - if URI.parse(request.url).query.present?
       = link_to 'トップヘ戻る', tasks_path, class: 'btn light-blue accent-2 margin_top'
-  div.light-blue.accent-2
-  = paginate @tasks, class: 'light-blue accent-2'
+
+  div.light-blue.accent-2.margintop
+  - if @tasks != []
+    = paginate @tasks, class: 'light-blue accent-2'
+
