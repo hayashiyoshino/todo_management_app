@@ -37,6 +37,14 @@ class Task < ApplicationRecord
     end
   end
 
+  def deadline_alert
+    self.each do |task|
+      if task.deadline < Date.current
+
+      end
+    end
+  end
+
   def self.pickup_tasks(pickup)
     return all if pickup.blank?
     where(status: pickup)
