@@ -39,9 +39,14 @@ class TasksController < ApplicationController
   def update
     lavel_list = params[:tags]
     if @task.update(task_params)
-      @task.save_lavels(lavel_list)
-      redirect_to tasks_path
-      flash[:notice] = 'TODOを編集しました'
+      if lavel_list.present?
+        @task.save_lavels(lavel_list)
+        redirect_to tasks_path
+        flash[:notice] = 'TODOを編集しました'
+      else
+        redirect_to tasks_path
+        flash[:notice] = 'TODOを編集しました'
+      end
     else
       render :edit
     end
