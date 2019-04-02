@@ -1,0 +1,7 @@
+div.margin_top_big
+  | グループ新規登録
+  = form_with model: @group, url: groups_path, local: true  do |f|
+    = f.label "グループ名を入力してください"
+    = f.text_field :group_name
+    = f.hidden_field :id, value: current_user.id
+    = f.submit class: 'btn light-blue accent-2', value: 'グループ作成'

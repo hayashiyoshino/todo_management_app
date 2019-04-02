@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
+  belongs_to :group
   has_many :task_lavels
   has_many :lavels, through: :task_lavels
   validates :title, presence: true

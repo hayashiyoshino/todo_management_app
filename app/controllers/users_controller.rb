@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         @tasks = Task.where(user_id: username.id)
       else
         redirect_to @user
-        flash[:notice] = "そのようなユーザーはいません"
+        flash[:notice] = "そのようなユーザーは存在しません"
       end
     end
   end

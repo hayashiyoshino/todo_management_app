@@ -1,0 +1,28 @@
+div.margin_top_big
+  = @user.name
+  | さんのタスク一覧
+
+div.margin_top_big
+  - if @tasks != nil
+    div.inner_yield
+      ul.task_list
+        - @tasks.each do |task|
+          div
+            li.task_item
+              = task.title
+              span.span_margin
+                | :
+              = task.description
+              span.span_margin
+                | :
+              = task.deadline
+              span.span_margin
+                | :
+              = task.status
+              span.span_margin
+                | :
+              = task.priority
+              span.span_margin
+              = link_to '編集', edit_task_path(task)
+              span.span_margin
+              = link_to '削除', task_path(task), method: :delete, data: {confirm: "本当に削除しますか？"}
