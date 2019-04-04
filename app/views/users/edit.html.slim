@@ -1,12 +1,12 @@
 div.margin_top_big.fontsize_midium
-  | 新規登録
+  | プロフィール変更
   div.margin_top_big
 
 - if @user.errors.any?
   - @user.errors.full_messages.each do |msg|
     = msg
 
-= form_with model: @user, url: users_path, local: true do |f|
+= form_with model: @user, url: "/users/#{current_user.id}", local: true do |f|
   div
     = f.label :name
     = f.text_field :name
@@ -22,5 +22,5 @@ div.margin_top_big.fontsize_midium
   div
     = f.label 'プロフィール画像を設定'
     = f.file_field :image
-  div
-    = f.submit value: "新規登録", class: 'btn light-blue accent-2'
+  div.margin_top
+    = f.submit value: "プロフィール更新", class: 'btn light-blue accent-2'

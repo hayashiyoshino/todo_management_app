@@ -1,9 +1,20 @@
+div.margin_top.fontsize_small
+  = @user.name
+  span.span_margin
+  | さんのページ
+-if @user.image.attached?
+  div.margin_top
+    = image_tag rails_blob_path(@user.image), class: 'image_size'
+
+
+
+
 - if @user.admin?
   div.margin_top_big
     span.btn.light-blue.accent-2
       = link_to "管理者ページ", admin_users_path
 
-div.margin_top_big
+div.margin_top_big_big
   | グループ検索
   = form_with model: @group, url: groups_path, method: :get, local: true  do |f|
     = f.label "グループ名を入力してください"
@@ -55,6 +66,9 @@ div.margin_top_big.fontsize_small
             span.span_margin
               | :
             = task.priority
+            - if task.file.attached?
+              span.span_margin
+              = link_to '添付ファイルをダウンロード', "tasks/download/#{task.id}", :style => "color:blue;"
             span.span_margin
             = link_to '編集', edit_task_path(task)
             span.span_margin

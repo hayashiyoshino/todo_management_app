@@ -40,6 +40,9 @@ div.inner_yield
               span.span_margin
                 | :
               = task.priority_i18n
+              - if task.file.attached?
+                span.span_margin
+                = link_to '添付ファイルをダウンロード', "tasks/download/#{task.id}", :style=>"color:blue;"
               span.span_margin
               = link_to '編集', edit_task_path(task)
               span.span_margin

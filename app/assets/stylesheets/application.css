@@ -39,6 +39,10 @@
   margin: 0 10px;
 }
 
+.span_margin_midium {
+  margin: 0 15px;
+}
+
 .span_margin_big {
   margin: 0 30px;
 }
@@ -49,6 +53,10 @@
 
 .margin_top_big{
   margin-top: 30px;
+}
+
+.margin_top_big_big{
+  margin-top: 60px;
 }
 
 .padding_midium{
@@ -81,4 +89,14 @@ span a{
 
 .ui-helper-hidden-accessible {
   display: none;
+}
+
+.image_size {
+  height: 100px;
+  width: 100px;
+}
+
+.image_size_small {
+  height: 30px;
+  width: 30px;
 }

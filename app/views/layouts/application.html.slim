@@ -25,6 +25,9 @@ html
                   a[href="/users/#{current_user.id}"]
                     | マイページ
                 li
+                  a[href="/users/#{current_user.id}/edit"]
+                    | プロフィール変更
+                li
                   a[href="/logout" data-method="delete"]
                     | ログアウト
 
