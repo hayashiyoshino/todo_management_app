@@ -1,0 +1,6 @@
+div.margin_top_big.margin_bottom
+  = month_calendar events: @tasks, attribute: :deadline do |date, tasks|
+    = date
+    - tasks.each do |task|
+      div
+        = task.title

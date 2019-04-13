@@ -41,7 +41,7 @@ class TasksController < ApplicationController
 
   def update
     lavel_list = params[:tags]
-    if files = params[:task][:file]
+    if file = params[:task][:file]
       @task.file.attach(file)
     end
     if @task.update(task_params)
@@ -74,6 +74,10 @@ class TasksController < ApplicationController
   def download
     data = @task.file.download
     send_data(data, type: 'image/png', filename: 'download.jpg')
+  end
+
+  def calendar
+    @tasks = Task.all
   end
 
   private

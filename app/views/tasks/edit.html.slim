@@ -1,5 +1,6 @@
-div
+div.margin_top_big.margin_bottom.fontsize_small
   | TODO編集
+  div.margin_top_big
   - if @task.errors.any?
     - @task.errors.full_messages.each do |msg|
       p
@@ -11,7 +12,7 @@ div
     = f.text_field :title
   div
     = f.label :description
-    = f.text_area :description
+    = f.text_field :description
   div
     = f.label :deadline
     = f.date_field :deadline

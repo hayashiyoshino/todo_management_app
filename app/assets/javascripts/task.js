@@ -8,8 +8,8 @@ $(document).on('turbolinks:load', function() {
        $('#task_lavels').tagit('createTag', tags[i])
      }
   }
-  if (document.referrer == "http://localhost:3000/login"){
-    if (gon.overtasks.length != 0　) {
+  if (document.referrer == "http://localhost:3000/login") {
+    if (gon.overtasks.length != 0 ) {
       new_tasks = gon.overtasks.map(x =>'『' + x + '』\n')
       new_task = new_tasks.join(',')
       window.alert('これらのタスクの期限が過ぎています！！！！\n' + new_task)
@@ -21,4 +21,4 @@ $(document).on('turbolinks:load', function() {
       window.alert('これらのタスクの期限が迫っています！！\n' + new_neartask)
     }
   }
-})
+});

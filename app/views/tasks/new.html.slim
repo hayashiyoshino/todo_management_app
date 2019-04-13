@@ -1,6 +1,6 @@
-div
+div.margin_top_big.margin_bottom.fontsize_small
   | TODO新規作成
-  div
+  div.margin_top_big
     - if @task.errors.any?
       - @task.errors.full_messages.each do |msg|
         p
@@ -12,7 +12,7 @@ div
     = f.text_field :title
   div
     = f.label :description
-    = f.text_area :description
+    = f.text_field :description
   div
     = f.label :deadline
     = f.date_field :deadline
@@ -25,6 +25,6 @@ div
   div
     = f.label "ファイルを添付"
     = f.file_field :file
-  div
+  div.margin_top
     = f.submit class: 'btn light-blue accent-2 margin_top'
 
