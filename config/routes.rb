@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'tasks/calendar' => 'tasks#calendar'
-  resources :tasks
+  get 'tasks/chart' => 'tasks#chart'
+  resources :tasks do
+    put :sort
+  end
   get 'tasks/download/:id' => 'tasks#download'
   root 'tasks#index'
 end

@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @keyword = params[:keyword]
-    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).search_by_lavel(params[:lavelname])
+    tasks = current_user.tasks.includes(:user).search(@keyword).sort_tasks(params[:sort]).pickup_tasks(params[:pickup]).pickup_priority_tasks(params[:pickuppriority]).search_by_lavel(params[:lavelname]).rank(:row_order)
       if tasks != nil
         @tasks = tasks.page(params[:page]).per(10)
       else
@@ -80,10 +80,30 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def sort
+    @task = Task.find(params[:task_id])
+    @task.update(task_params)
+  end
+
+  def chart
+    tasks = current_user.tasks.includes(:lavels)
+    @lavels = []
+    tasks.each do |task|
+      task.lavels.each do |lavel|
+      @lavels << lavel
+      end
+    end
+    @data =  @lavels.group_by{ |lavel| lavel }.values.map{ |ar| ar.size }
+    lavel_ids = @lavels.group_by{|lavel|lavel}.keys.map{|i|i.id}
+    @lavels = lavel_ids.map{ |id| Lavel.find(id).lavel_name }
+    gon.lavels = @lavels
+    gon.data = @data
+  end
+
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :deadline, :status, :priority, :file)
+    params.require(:task).permit(:title, :description, :deadline, :status, :priority, :file, :row_order_position, :task_id)
   end
 
   def set_task
