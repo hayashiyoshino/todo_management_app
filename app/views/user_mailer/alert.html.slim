@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    meta[content="text/html; charset=UTF-8" http-equiv="Content-Type"]
+  body
+    h1
+      = @user.name
+      | 様
+    p
+      | タスクの期限が近づいております。
+    p
+      | 以下のリンクよりログインして確認してください。
+      = @url
+    p
+      | どうぞよろしくお願いいたします。
